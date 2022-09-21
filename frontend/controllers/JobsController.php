@@ -58,12 +58,12 @@ class JobsController extends Controller
         $category = $temp::find()->where(['url' => $slug])->one();
 
         // товары категории
-        if($slug > 0 ){
-        
+        if(!empty($category) && !empty($slug)){
+            
             list($projects, $pages) = $temp->getCatProjects($category->id);
             // данные о категории
             $model = $this->findModel($category->id);
-            
+
         }else{
             
             list($projects, $pages) = $temp->getProjects();

@@ -101,7 +101,7 @@ class Jobs extends \yii\db\ActiveRecord
                 ->select('projects.*,jobs.title as cattitle,jobs.url as category_url')
                 ->leftJoin('jobs', 'projects.category_id = jobs.id')
                 ->orderBy(['projects.create_date' => SORT_DESC]);
-       
+
         $pages = new Pagination([
             'totalCount' => $query->count(),
             // количество товаров на странице теперь в настройках

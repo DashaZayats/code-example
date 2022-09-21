@@ -5490,7 +5490,8 @@ button.btn.btn-login{
 }
 .login-panel img{
 	margin:30px auto 20px;
-	max-width:40%
+	max-width:40%;
+        background: #5ab2ff;
 }
 .login-panel form{
 	padding:0 30px 40px
