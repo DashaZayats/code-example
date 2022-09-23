@@ -38,7 +38,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => 'Фриланс з
 
                                         <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
-<?= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className()) ?>
+                                        <?= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className()) ?>
 
                                         <div class="form-group">
                                             <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
