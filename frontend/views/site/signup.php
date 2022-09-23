@@ -25,6 +25,8 @@ $this->registerMetaTag(['name' => 'description', 'content' => 'Фриланс з
                                 <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
                                 <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
                                 <?= $form->field($model, 'password')->passwordInput() ?>
+                            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
                                 <div class="form-group">
                                     <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                                 </div>

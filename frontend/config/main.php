@@ -38,7 +38,12 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-
+        'reCaptcha' => [
+           'name' => 'reCaptcha',
+           'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
+           'siteKey' => '6LdCaSEiAAAAAEII30vDo9Uo-lMxoheTwr6qhz4Z',
+           'secret' => '6LdCaSEiAAAAAOBnTYdhuUyKPAxfmP5zBBxWe-Lh',
+           ],
 
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -53,6 +58,7 @@ return [
                     'jobs/search' => 'jobs/search',
                //     'jobs/<id:[-_0-9a-zA-Z]+>/' => 'jobs/view',
                     'jobs/<slug:[-_0-9a-zA-Z]+>/' => 'jobs/view',
+                    'responses/create' => 'responses/create',
                     'projects/create' => 'projects/create',
                     'projects/update/<id:[-_0-9a-zA-Z]+>/' => 'projects/update',
                     'projects/<id:[-_0-9a-zA-Z]+>/' => 'projects/view',
