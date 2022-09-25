@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(['action' => Yii::$app->urlManager->createUrl(['/responses/create'])]);?>
 
-    <?= $form->field($model, 'project_id')->hiddenInput(['value'=>Yii::$app->request->get('id')])->label(false); ?>
+    <?= $form->field($model, 'project_id')->hiddenInput(['value'=>$project_id])->label(false); ?>
 
     <?= $form->field($model, 'user_id')->hiddenInput(['value'=>Yii::$app->user->identity->id])->label(false); ?>
 

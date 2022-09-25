@@ -2,9 +2,12 @@
 
 namespace frontend\controllers;
 
-use yii;
+use Yii;
+use yii\base\Model;
+use common\models\User;
 use app\models\Projects;
 use app\models\ProjectsSearch;
+use app\models\SignupForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -56,25 +59,30 @@ class ProjectsController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($url)
     {
 
-        $model = $this->findModel($id);
-  
+        $temp = new Projects();
+        $model = $temp::find()->where(['url' => $url])->one();
+
+
         if(!empty($model)){
+            $id = $model->id;
             $category = Jobs::findOne($model->category_id);
-        }
-       
-        if(Yii::$app->user->isGuest){
-            $responsesUserCount = 0;
+
+            if(Yii::$app->user->isGuest){
+                $responsesUserCount = 0;
+            }else{
+                $responsesUserCount = Responses::find()->where(['user_id' => Yii::$app->user->identity->id ,'project_id'=>$id])->one();
+            }
+            $responsesList = Responses::find()->select('responses.*,user.email as user_email, user.username as user_name')->leftJoin('user', 'responses.user_id = user.id')->where(['responses.project_id'=>$id])->asArray()->all();
+            return $this->render(
+                'view',
+                compact('model', 'category','responsesUserCount', 'responsesList')
+            );
         }else{
-            $responsesUserCount = Responses::find()->where(['user_id' => Yii::$app->user->identity->id ,'project_id'=>$id])->one();
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
-        $responsesList = Responses::find()->select('responses.*,user.email as user_email, user.username as user_name')->leftJoin('user', 'responses.user_id = user.id')->where(['responses.project_id'=>$id])->asArray()->all();
-        return $this->render(
-            'view',
-            compact('model', 'category','responsesUserCount', 'responsesList')
-        );
     }
 
     /**
@@ -89,9 +97,30 @@ class ProjectsController extends Controller
         if ($this->request->isPost) {
             $data = $this->request->post();
             $model->url = $this->translitstr($data['Projects']['title'], 'urltranslit');
-            if ($model->load($this->request->post()) && $model->save()) {
-      
-                return $this->redirect(['view', 'id' => $model->id]);
+
+            if ($model->load($this->request->post()) && $model->save(false)) {
+                
+                if(Yii::$app->user->isGuest){
+
+                    $usermodel = new User();
+                    $usermodel->email = $data['SignupForm']['email'];
+                    $usermodel->password_hash = Yii::$app->security->generatePasswordHash($data['SignupForm']['password']);
+
+                    $usermodel->generateAuthKey();
+                    $usermodel->generateEmailVerificationToken();
+                //    print_r($usermodel);exit;
+                    $usermodel->save(false);
+                   // $identity=new UserIdentity($usermodel->email,$data['Projects']['password']);
+                    Yii::$app->user->login($usermodel->findByUsername($usermodel->email), 3600 * 24 * 30);
+              
+                }
+                
+                
+                $model->url = $this->translitstr($data['Projects']['title'], 'urltranslit').'-'.$model->id;
+                $model->created_by_id = Yii::$app->user->getId();
+                $model->save(false);
+
+                return $this->redirect(['view', 'url' => $model->url]);
             }
         } else {
             $model->loadDefaultValues();

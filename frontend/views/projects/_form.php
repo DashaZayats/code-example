@@ -39,9 +39,12 @@ use \frontend\models\SignupForm;
         <?php $usermodel = new SignupForm;?>
         <?= $form->field($usermodel, 'email')->textInput(['maxlength' => true,'placeholder' => 'Email для регистрации в сервисе'])->label('Ваш Email'); ?>
         <?= $form->field($usermodel, 'password')->passwordInput(); ?>
+        <?php //= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className()) ?>
     <?php else:?>
         <?= $form->field($model, 'created_by_id')->hiddenInput(['value'=>Yii::$app->user->identity->id])->label(false); ?>
     <?php endif;?>
+    
+
     <div class="form-group">
         <?= Html::submitButton('Разместить заказ', ['class' => 'btn btn-primary']) ?>
     </div>

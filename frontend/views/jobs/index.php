@@ -66,14 +66,14 @@ if(!empty($category)){
                                             <div class="newjob-list-layout">
                                                     <div class="cll-wrap">
                                                             <div class="cll-caption">
-                                                                    <h4><a href="<?= Url::to(['projects/view', 'id' => $project['id']]); ?>"><?php echo $project['title']?></a></h4>
+                                                                    <h4><a href="<?= Url::to(['projects/view', 'url' => $project['url']]); ?>"><?php echo $project['title']?></a></h4>
                                                                     <?php
                                                                     $array = explode(" ", $project['description']);
                                                                     $wordCount = count($array);
                                                                     $array = array_slice($array, 0, 25);
                                                                     $newtext = implode(" ", $array);
                                                                     ?>
-                                                                    <p><a style="color:#667488" href="<?= Url::to(['projects/view', 'id' => $project['id']]); ?>"><?php echo $newtext?><?php if($wordCount>25): echo '...'; endif;?></a></p>
+                                                                    <p><a style="color:#667488" href="<?= Url::to(['projects/view', 'url' => $project['url']]); ?>"><?php echo $newtext?><?php if($wordCount>25): echo '...'; endif;?></a></p>
                                                                     <ul>
                                                                     
                                                                             <li><i class="fa fa-tags" aria-hidden="true"></i><a href="<?= Url::toRoute(['jobs/view', 'slug' => $project['category_url']])?>"><?php echo $project['cattitle']?></a></li>

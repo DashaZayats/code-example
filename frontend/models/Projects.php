@@ -41,14 +41,28 @@ class Projects extends \yii\db\ActiveRecord
      */
     public function rules()
     {
-        return [
-            [['category_id', 'responses', 'views', 'created_by_id', 'worker_id', 'status'], 'integer'],
-            [['title', 'description', 'create_date', 'end_date', 'price', 'created_by_id', 'worker_id'], 'required'],
-            [['description'], 'string'],
-            [['create_date', 'end_date'], 'safe'],
-            [['price'], 'number'],
-            [['title'], 'string', 'max' => 250],
-        ];
+        if (Yii::$app->user->isGuest) {
+            return [
+                [['category_id', 'responses', 'views', 'created_by_id', 'worker_id', 'status'], 'integer'],
+                [['title', 'description', 'create_date', 'end_date', 'price', 'created_by_id', 'worker_id'], 'required'],
+                [['description'], 'string'],
+                [['create_date', 'end_date'], 'safe'],
+                [['price'], 'number'],
+                [['title'], 'string', 'max' => 250],
+                // verifyCode needs to be entered correctly
+          //      ['reCaptcha', 'required'],
+           //     ['reCaptcha', \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6LdCaSEiAAAAAOBnTYdhuUyKPAxfmP5zBBxWe-Lh']
+            ];
+        }else{
+            return [
+                [['category_id', 'responses', 'views', 'created_by_id', 'worker_id', 'status'], 'integer'],
+                [['title', 'description', 'create_date', 'end_date', 'price', 'created_by_id', 'worker_id'], 'required'],
+                [['description'], 'string'],
+                [['create_date', 'end_date'], 'safe'],
+                [['price'], 'number'],
+                [['title'], 'string', 'max' => 250],
+             ];
+        }
     }
 
     /**

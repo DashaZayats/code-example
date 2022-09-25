@@ -83,7 +83,7 @@ class ResponsesController extends Controller
 
             Yii::$app->session->setFlash('success', 'Ваша заявка отправлена. Инфомация по заявке доступна в кабинете пользоваеля.');
 
-            return $this->redirect(['projects/view', 'id' => $project_id]);
+            return $this->redirect(['projects/view', 'url' => $projectData->url]);
             }
         } else {
             $model->loadDefaultValues();

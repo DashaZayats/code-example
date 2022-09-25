@@ -110,7 +110,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => 'Фриланс з
             <div class="modal-content">
                 <div class="modal-body">
                     <?= $this->render('../responses/_form', [
-                       'model' => new Responses,
+                       'model' => new Responses, 'project_id' => $model->id,
                    ]) ?>
                 </div>
             </div>
