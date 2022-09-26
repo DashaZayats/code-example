@@ -50,8 +50,8 @@ class Projects extends \yii\db\ActiveRecord
                 [['price'], 'number'],
                 [['title'], 'string', 'max' => 250],
                 // verifyCode needs to be entered correctly
-          //      ['reCaptcha', 'required'],
-           //     ['reCaptcha', \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6LdCaSEiAAAAAOBnTYdhuUyKPAxfmP5zBBxWe-Lh']
+                ['reCaptcha', 'required'],
+                ['reCaptcha', \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6LdCaSEiAAAAAOBnTYdhuUyKPAxfmP5zBBxWe-Lh']
             ];
         }else{
             return [
@@ -147,44 +147,38 @@ class Projects extends \yii\db\ActiveRecord
             return [null, null];
         }
 
-        // пробуем извлечь данные из кеша
-        $key = 'search-'.md5($search).'-page-'.$page;
-        $data = Yii::$app->cache->get($key);
-            $words = explode(' ', $search);
-     //   if ($data === false) {
-            // данных нет в кеше, получаем их заново
-            $query = self::find()->select('projects.*,jobs.title as cattitle,jobs.url as category_url')
-                ->leftJoin('jobs', 'projects.category_id = jobs.id');
-                $query->where(['like', 'projects.title', $words[0]]);
-                $query->where(['like', 'projects.description', $words[0]]);
-                $query->where(['like', 'jobs.title', $words[0]]);
-             // разбиваем поисковый запрос на отдельные слова
+        $words = explode(' ', $search);
 
-           for ($i = 1; $i < count($words); $i++) {
-                $query->orWhere(['like', 'projects.title', $words[$i]]);
-                $query->orWhere(['like', 'projects.description', $words[$i]]);
-                $query->orWhere(['like', 'jobs.title', $words[$i]]);
-            }
-                $query->orderBy(['projects.create_date' => SORT_DESC]);
-            // постраничная навигация
-            $pages = new Pagination([
-                'totalCount' => $query->count(),
-                'pageSize' =>5,
-                'forcePageParam' => false,
-                'pageSizeParam' => false
-            ]);
-            $products = $query
-                ->offset($pages->offset)
-                ->limit($pages->limit)
-                ->asArray()
-                ->all();
-     //  $sqlText = $query->createCommand()->getRawSql();
-     //  print_r($sqlText);
+        $query = self::find()->select('projects.*,jobs.title as cattitle,jobs.url as category_url')
+            ->leftJoin('jobs', 'projects.category_id = jobs.id');
+            $query->where(['like', 'projects.title', $words[0]]);
+            $query->orWhere(['like', 'projects.description',$words[0]]);
+            $query->orWhere(['like', 'jobs.title',$words[0]]);
+            
+        // разбиваем поисковый запрос на отдельные слова
+       for ($i = 1; $i < count($words); $i++) {
+            $query->orWhere(['like', 'projects.title',$words[$i]]);
+            $query->orWhere(['like', 'projects.description',$words[$i]]);
+            $query->orWhere(['like', 'jobs.title',$words[$i]]);
+        }
+        
+        $query->orderBy(['projects.create_date' => SORT_DESC]);
+        // постраничная навигация
+        $pages = new Pagination([
+            'totalCount' => $query->count(),
+            'pageSize' =>5,
+            'forcePageParam' => false,
+            'pageSizeParam' => false
+        ]);
+        $products = $query
+            ->offset($pages->offset)
+            ->limit($pages->limit)
+            ->asArray()
+            ->all();
+    //  $sqlText = $query->createCommand()->getRawSql();
+   //   print_r($sqlText);
   
-            // сохраняем полученные данные в кеше
-            $data = [$products, $pages];
-            Yii::$app->cache->set($key, $data);
-       // }
+        $data = [$products, $pages];
 
         return $data;
     }

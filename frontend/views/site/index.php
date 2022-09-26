@@ -40,7 +40,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => 'Фриланс з
                         <div class="category-desc">
                             <div class="category-detail category-desc-text">
                                 <h4> <a href="<?= Url::to(['jobs/view', 'slug' => $category['url']]); ?>"><?php echo $category['title']?></a></h4>
-                                <p>122 предложения</p>
+                                <p><?php echo $category['projectCount']?> предложений</p>
                             </div>
                         </div>
                     </div>

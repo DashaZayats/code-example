@@ -39,17 +39,15 @@ if(!empty($category)){
                             <!--Filter 	-->						
                             <div class="row">
                                     <div class="col-md-12">
-                                            <div class="filter-wraps">
-
+                                            <div class="filter-wraps" id="project-search">
+                                                <?php echo Html::beginForm(['jobs/search', 'id' => Yii::$app->request->get('id')], 'GET') ?>
                                                     <div class="filter-wraps-one">
-                                                        <?php echo Html::beginForm(['jobs/search', 'id' => Yii::$app->request->get('id')], 'GET') ?>
                                                         <input type="text" name="query" class="form-control" style="margin-bottom: 0;" placeholder="Найти работу" value="<?php if(isset($query)): echo $query; endif;?>">
-                                                        <?php echo Html::endForm() ?>
                                                     </div>
                                                     <div class="filter-wraps-two">
-                                                            <button class="btn btn-primary" type="submit">Поиск</button>
+                                                        <button class="btn btn-primary" type="submit">Поиск</button>
                                                     </div>
-
+                                                <?php echo Html::endForm() ?>
                                             </div>
                                     </div>
                             </div>

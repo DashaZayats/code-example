@@ -94,6 +94,7 @@ class Jobs extends \yii\db\ActiveRecord
 
         return [$projects, $pages];
     }
+
     public function getProjects(){
        
         // для постаничной навигации получаем только часть товаров

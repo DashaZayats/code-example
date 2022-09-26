@@ -67,7 +67,6 @@ return [
                     'profile/response/<id:[-_0-9a-zA-Z]+>/' => 'profile/response',
                     'profile/project/<id:[-_0-9a-zA-Z]+>/' => 'profile/project',
                     'profile/projects' => 'profile/projects',
-                
                     'profile/<id:[-_0-9a-zA-Z]+>/' => 'profile/view',
                     'profile/update/<id:[-_0-9a-zA-Z]+>/' => 'profile/update',
 

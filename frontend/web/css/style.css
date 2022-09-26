@@ -1353,7 +1353,7 @@ input[type=file]:focus,input[type=checkbox]:focus,input[type=radio]:focus{
 	color:#252d40;
 	position:relative;
 	font-weight:600;
-	margin-top:0;
+	margin-top:20px;
 	margin-bottom:10px
 }
 .main-heading h2>span{
@@ -5805,7 +5805,7 @@ button.btn.btn-login{
 	text-align:center;
 	padding:50px 12px 30px;
 	box-sizing:border-box;
-	margin-top:30px;
+	margin-bottom:30px;
 	overflow:hidden;
 	transition:.6s linear
 }
@@ -10598,7 +10598,8 @@ to{
 
 
 .rainbow-button {
-  width:calc(20vw + 6px);
+  /*width:calc(20vw + 6px);*/
+  width:calc(98% + 2%);
   height:calc(50px + 6px);
   background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
   border-radius:5px;
@@ -10611,7 +10612,7 @@ to{
 }
 .rainbow-button:after {
   content:attr(alt);
-  width:20vw;
+  width:98%;
   height:50px;
   background-color:#ed1d25;
   display:flex;
@@ -10772,4 +10773,15 @@ nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li a.btn-primary:hover{
     background-position-y: 80px;
     background-repeat: no-repeat;
     background-position-x: 140%;
+}
+#project-search{
+    position:relative;
+}
+#project-search .filter-wraps-one{
+    margin-right:80px;
+}
+#project-search .filter-wraps-two{
+    position:absolute;
+    right:23px;
+    top:20px;
 }

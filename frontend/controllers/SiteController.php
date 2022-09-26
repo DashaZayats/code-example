@@ -19,6 +19,7 @@ use frontend\models\ContactForm;
 use frontend\models\UploadForm;
 use yii\web\UploadedFile;
 use app\models\Profile;
+use app\models\Projects;
 use app\models\Jobs;
 
 /**
@@ -90,6 +91,10 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $jobs = Jobs::find()->indexBy('id')->asArray()->all();
+        foreach($jobs as $key=>$job){
+            $jobs[$key]['projectCount'] = Projects::find()->where($job['id'].' = category_id')->count();
+        }
+
         return $this->render('index', [
             'jobs' => $jobs,
         ]);
