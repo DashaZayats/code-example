@@ -11,12 +11,15 @@ if(!empty($category)){
     $this->title = $category->meta_title;
     $this->params['breadcrumbs'][] = ['label' => 'Работа', 'url' => ['index']];
     $this->params['breadcrumbs'][] = $category->title;
+    $this->params['h1_title'] =  $category->title;
     
     $this->registerMetaTag(['name' => 'keywords', 'content' => $category->meta_keywords]);
     $this->registerMetaTag(['name' => 'description', 'content' => $category->meta_description]);
+
 }else{
     $this->title = 'Работа для web мастеров - Бесплатный сервис web фриланса - Удаленная работа';
     $this->params['breadcrumbs'][] = 'Работа';
+    $this->params['h1_title'] =  'Работа';
     
     $this->registerMetaTag(['name' => 'keywords', 'content' => 'HTML-верстка, веб-программирование, интернет-магазины, сайты под ключ, системы управления (CMS), тестирование сайтов, дизайн сайтов, администрирование сайтов, контент-менеджер, продвижение сайтов (SEO)']);
     $this->registerMetaTag(['name' => 'description', 'content' => 'Поручите ваш заказ лучшим фрилансерам на сайте «FreeTask» ✅ Новая платформа для Web-мастеров ✅ Полностью бесплатный фриланс ✅ Неограниченное количество заявок']);

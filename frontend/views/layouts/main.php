@@ -69,7 +69,11 @@ AppAsset::register($this);
 
             <section class="inner-header-title background-image">
                 <div class="container">
+                    <?php if(isset($this->params['h1_title'])):?>
+                    <h1><?php echo $this->params['h1_title']?></h1>
+                    <?php else:?>
                     <h1><?php echo $this->title?></h1>
+                    <?php endif;?>
                 </div>
             </section>
             <div class="clearfix"></div>
