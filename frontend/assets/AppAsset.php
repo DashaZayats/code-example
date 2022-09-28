@@ -34,7 +34,8 @@ class AppAsset extends AssetBundle
      //   'js/jquery_002.js',
         'js/time_ago.js',
         'js/site.js',
-        'js/fontawesome.js'
+        'js/fontawesome.js',
+        'js/bootsnav.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -1,10 +1,10 @@
 <?php
 
 namespace app\models;
-use app\models\Projects;
-use yii\data\Pagination;
 
 use Yii;
+use app\models\Projects;
+use yii\data\Pagination;
 
 /**
  * This is the model class for table "jobs".

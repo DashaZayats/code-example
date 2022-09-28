@@ -21,7 +21,7 @@ use yii\web\UploadedFile;
 use app\models\Profile;
 use app\models\Projects;
 use app\models\Jobs;
-
+use app\models\Sitemap;
 /**
  * Site controller
  */
@@ -302,4 +302,12 @@ class SiteController extends Controller
     }
     
     
+    //Карта сайта. Выводит в виде XML файла.
+    public function actionSitemap(){
+        $sitemap = new Sitemap();
+        $urls = $sitemap->getUrl();
+        Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
+        Yii::$app->response->headers->add('Content-Type', 'text/xml');
+        return $this->renderPartial('sitemap', ['urls' => $urls]);
+    }
 }

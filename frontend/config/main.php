@@ -69,7 +69,7 @@ return [
                     'profile/projects' => 'profile/projects',
                     'profile/<id:[-_0-9a-zA-Z]+>/' => 'profile/view',
                     'profile/update/<id:[-_0-9a-zA-Z]+>/' => 'profile/update',
-
+                    'sitemap.xml' => 'site/sitemap',
                 
                 ),
         ],
