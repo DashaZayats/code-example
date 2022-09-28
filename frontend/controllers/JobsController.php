@@ -55,8 +55,13 @@ class JobsController extends Controller
     public function actionView($slug)
     {
         $temp = new Jobs();
-        $category = $temp::find()->where(['url' => $slug])->one();
-
+        
+        if(!empty($slug)){
+            $category = $temp::find()->where(['url' => $slug])->one();
+        }else{
+            $category = array();
+        }
+     
         // товары категории
         if(!empty($category) && !empty($slug)){
             
