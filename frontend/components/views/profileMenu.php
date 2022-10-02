@@ -15,14 +15,14 @@ use yii\helpers\Url;
     <div class="dashboard-menu">
         <ul>
             <li><a href="<?= Url::to(['profile/index']);?>"><i class="ti-dashboard"></i>Панель управления</a></li>
-            <li>Я фрилансер</li>
+            <li class="block-title">Я фрилансер</li>
             <li><a href="<?= Url::to(['profile/view', 'id' => Yii::$app->user->identity->id]); ?>"><i class="ti-wallet"></i>Мой профиль</a></li>
-            <li>Портфолио</li>
-            <li>Заявки к заказам</li>
+            <li><a href="#"><i class="ti-user"></i>Портфолио</a></li>
+            <li><a href="#"><i class="ti-ticket"></i>Мои отклики к проектам</a></li>
             <li><a href="<?= Url::to(['profile/responses']);?>"><i class="ti-hand-point-right"></i>Приглашения на проекты</a></li>
-            <li>Я заказчик</li>
+            <li class="block-title">Я заказчик</li>
             <li><a href="<?= Url::to(['profile/projects']);?>"><i class="ti-heart"></i>Мои проекты</a></li>
-            <li>Выбранные исполнители</li>
+            <li><a href="#"><i class="ti-id-badge"></i>Выбранные исполнители</a></li>
 
         </ul>
     </div>

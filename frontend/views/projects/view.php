@@ -15,15 +15,19 @@ if(!empty($category)){
     $this->params['breadcrumbs'][] = array('label'=> $category->title, 'url'=>Url::toRoute(['jobs/view', 'slug' => $category->url]));
     $this->params['breadcrumbs'][] = array('label'=> $this->title);
 }else{
-
     $this->title = $model->title;
     $this->params['breadcrumbs'][] = ['label' => 'Работа', 'url'=>Url::toRoute('/jobs')];
     $this->params['breadcrumbs'][] = $this->title;
 }
 
 
-$this->registerMetaTag(['name' => 'keywords', 'content' => 'HTML-верстка , Веб-программирование, Интернет-магазины , Сайты «под ключ» , Системы управления (CMS) , Тестирование сайтов , Дизайн сайтов, Администрирование сайтов , Контент-менеджер ,Продвижение сайтов (SEO) ']);
-$this->registerMetaTag(['name' => 'description', 'content' => 'Фриланс заказы для web программистов, верстальщиков, дизайнеров, сеошников, тестировщиров, администраторов, контент менеджеров']);
+$array = explode(" ", $model->description);
+$wordCount = count($array);
+$array = array_slice($array, 0, 25);
+$newtext = implode(" ", $array);
+
+$this->registerMetaTag(['name' => 'keywords', 'content' => $category->title.", ".$newtext]);
+$this->registerMetaTag(['name' => 'description', 'content' => $newtext]);
 
 \yii\web\YiiAsset::register($this);
 ?>

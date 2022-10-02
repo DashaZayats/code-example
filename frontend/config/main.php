@@ -15,7 +15,7 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
-                        'baseUrl' => '',
+            'baseUrl' => '',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -69,6 +69,7 @@ return [
                     'profile/projects' => 'profile/projects',
                     'profile/<id:[-_0-9a-zA-Z]+>/' => 'profile/view',
                     'profile/update/<id:[-_0-9a-zA-Z]+>/' => 'profile/update',
+                    'messages/create' => 'messages/create',
                     'sitemap.xml' => 'site/sitemap',
                 
                 ),

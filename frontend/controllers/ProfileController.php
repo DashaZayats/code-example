@@ -2,7 +2,8 @@
 
 namespace frontend\controllers;
 
-use yii;
+use Yii;
+use yii\filters\AccessControl;
 use app\models\Profile;
 use app\models\ProfileSearch;
 use yii\web\Controller;
@@ -31,6 +32,19 @@ class ProfileController extends Controller
                     'actions' => [
                         'delete' => ['POST'],
                     ],
+                ],
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                    'denyCallback' => function ($rule, $action) {
+                        Yii::$app->session->setFlash('error', 'Авторизуйтесь.');
+                        return $this->redirect(['/']); // or where you want to redirect?
+                    }
                 ],
             ]
         );
@@ -95,8 +109,9 @@ class ProfileController extends Controller
     public function actionProject($id)
     {
 
-
+  
         $model = Projects::findOne(['id' => $id]);
+
         if(!empty($model)){
             $category = Jobs::findOne($model->category_id);
         }
@@ -112,7 +127,7 @@ class ProfileController extends Controller
             $responsesList[$key]['messages'] = Messages::find()->select('*')->where(['response_id'=>$response['id']])->orderBy(['create_date' => SORT_DESC])->asArray()->all();
         }
         
-        
+
         return $this->render(
             'projects_view',
             compact('model', 'category','responsesUserCount', 'responsesList')
@@ -127,6 +142,7 @@ class ProfileController extends Controller
      */
     public function actionView($id)
     {
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);

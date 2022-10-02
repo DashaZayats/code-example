@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <span class="tg-themetag tg-featuretag tg-green_label">Прием заявок</span>
                                         <div class="col-md-3 col-sm-3">
                                             <div class="brows-job-link">
-                                                <a href="job-apply-detail.html" class="btn btn-warning">Выбрать исполнителя</a>
+                                                <a href="<?= Url::to(['profile/project', 'id' => $project['id']]); ?>" class="btn btn-warning">Выбрать исполнителя</a>
                                             </div>
                                         </div>
                                         <?php elseif($project['status']==1):?>
