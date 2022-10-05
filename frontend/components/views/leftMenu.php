@@ -8,7 +8,7 @@ use yii\helpers\Url;
 <a href="<?= Url::to(['projects/create']); ?>" class="rainbow-button" alt="Разместить заказ"></a><br>
 <!-- /Job Alert -->
 
-<div class="show-hide-sidebar hidden-xs hidden-sm">
+<div class="show-hide-sidebar">
     <div class="sidebar-widgets">
         <div class="ur-detail-wrap">
             <div class="ur-detail-wrap-header">

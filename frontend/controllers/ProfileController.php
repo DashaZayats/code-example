@@ -140,11 +140,11 @@ class ProfileController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView()
     {
         
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel(Yii::$app->user->identity->id),
         ]);
     }
 
@@ -159,7 +159,7 @@ class ProfileController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view']);
             }
         } else {
             $model->loadDefaultValues();
@@ -177,13 +177,13 @@ class ProfileController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate()
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel(Yii::$app->user->identity->id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
      
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view']);
         }
 
         return $this->render('update', [
@@ -198,9 +198,9 @@ class ProfileController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete()
     {
-        $this->findModel($id)->delete();
+        $this->findModel(Yii::$app->user->identity->id)->delete();
 
         return $this->redirect(['index']);
     }

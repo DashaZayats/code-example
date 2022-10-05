@@ -7,7 +7,7 @@ use frontend\components\ProfileMenuWidget;
 use frontend\components\ProjectStageWidget;
 
 $this->title = 'Мои проекты';
-$this->params['breadcrumbs'][] = ['label' => 'Профиль', 'url'=>Url::toRoute('/profile')];
+$this->params['breadcrumbs'][] = ['label' => 'Панель управления', 'url'=>Url::toRoute('/profile')];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <section class="advance-search gray">

@@ -31,10 +31,10 @@ AppAsset::register($this);
         <div class="Loader"></div>
         <div class="wrapper">
             <nav class="navbar navbar-default navbar-fixed navbar-light white bootsnav on no-full">
-                <div class="container">
+                <div class="container header-menu">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu"><i class="fa fa-bars"></i></button>
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="<?php echo Yii::$app->homeUrl?>"><img width="210px" height="44px" src="/logo.png" class="logo logo-scrolled" alt=""></a>
+                        <a class="navbar-brand" href="<?php echo Yii::$app->homeUrl?>"><img width="200px" height="40px" src="/logo.png" class="logo logo-scrolled" alt=""></a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">

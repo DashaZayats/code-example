@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Профиль', 'url'=>Url::toRoute('/profile')];
+$this->params['breadcrumbs'][] = ['label' => 'Панель управления', 'url'=>Url::toRoute('/profile')];
 $this->params['breadcrumbs'][] = ['label' => 'Мои проекты', 'url'=>Url::toRoute('/profile/projects')];
 $this->params['breadcrumbs'][] = $this->title;
 

@@ -10,6 +10,7 @@ return [
     'id' => 'app-frontend',
     'name' => 'Freetask.online',
     'basePath' => dirname(__DIR__),
+    'language' => 'ru',
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
@@ -67,8 +68,8 @@ return [
                     'profile/response/<id:[-_0-9a-zA-Z]+>/' => 'profile/response',
                     'profile/project/<id:[-_0-9a-zA-Z]+>/' => 'profile/project',
                     'profile/projects' => 'profile/projects',
-                    'profile/<id:[-_0-9a-zA-Z]+>/' => 'profile/view',
-                    'profile/update/<id:[-_0-9a-zA-Z]+>/' => 'profile/update',
+                    'profile/view' => 'profile/view',
+                    'profile/update' => 'profile/update',
                     'messages/create' => 'messages/create',
                     'sitemap.xml' => 'site/sitemap',
                 

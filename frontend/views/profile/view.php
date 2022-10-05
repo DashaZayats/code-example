@@ -3,8 +3,8 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use frontend\components\ProfileMenuWidget;
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Profiles', 'url' => ['index']];
+$this->title = 'Мой профиль';
+$this->params['breadcrumbs'][] = ['label' => 'Панель управления', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ],
                             ]) ?>
                             <p>
-                                <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                                <?= Html::a('Изменить', ['update'], ['class' => 'btn btn-primary']) ?>
                             </p>
                         </div>
                     </div>

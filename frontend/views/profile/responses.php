@@ -10,7 +10,7 @@ use frontend\components\ProjectStageWidget;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Приглашения на работу';
-$this->params['breadcrumbs'][] = ['label' => 'Профиль', 'url'=>Url::toRoute('/profile')];
+$this->params['breadcrumbs'][] = ['label' => 'Панель управления', 'url'=>Url::toRoute('/profile')];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <section class="advance-search gray">

@@ -1549,10 +1549,7 @@ ul.cart-list > li.total > .btn{
 	color:#fff!important;
 	padding:10px 15px
 }
-nav.navbar.bootsnav{
-	background-color:#252d40;
-	border-bottom:1px solid #252d40
-}
+
 @media only screen and (min-width:768px){
 	body nav.navbar.bootsnav ul.nav > li > a.signin{
 	background:#11b719!important
@@ -8636,7 +8633,7 @@ h3{
 	padding:0
 }
 .navbar-right,.navbar-left{
-	margin-top:20px
+	margin-top:17px
 }
 .banner p{
 	font-size:18px;
@@ -8757,7 +8754,7 @@ a.btn.call-btn{
 	font-size:25px
 }
 nav.navbar.bootsnav ul.nav > li{
-	padding:4px
+	padding:0 4px 0 4px
 }
 nav.navbar ul.nav > li > a{
 	padding:30px 15px
@@ -8780,7 +8777,7 @@ nav.navbar .navbar-brand img.logo{
 	width:150px
 }
 nav.navbar .navbar-brand{
-	margin-top:2px
+	margin-top:17px
 }
 nav.navbar .navbar-brand img.logo{
 	width:210px;
@@ -8880,7 +8877,6 @@ body nav.navbar.bootsnav ul.nav > li > a.signin{
 }
 img.logo.logo-scrolled{
 	max-width:200px;
-	margin-top:10px
 }
 nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after{
 	font-family:'FontAwesome';
@@ -9383,9 +9379,6 @@ nav.navbar .navbar-brand{
 }
 .job-types{
 	text-align:left
-}
-.sidebar-widgets{
-	margin-right:15px
 }
 article.advance-search-job{
 	text-align:center
@@ -10795,4 +10788,13 @@ nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li a.btn-primary:hover{
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
+}
+section.advance-search.gray, section.gray{
+    padding-top:0;
+}
+img.logo.logo-scrolled {
+  background: #5ab2ff;
+}
+.header-menu{
+    position:relative;
 }

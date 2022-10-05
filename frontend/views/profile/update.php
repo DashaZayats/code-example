@@ -6,10 +6,10 @@ use frontend\components\ProfileMenuWidget;
 /* @var $this yii\web\View */
 /* @var $model app\models\Profile */
 
-$this->title = 'Update Profile: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Profiles', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Редактирование профиля';
+$this->params['breadcrumbs'][] = ['label' => 'Панель управления', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Мой профиль', 'url' => ['view']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <section class="gray">
