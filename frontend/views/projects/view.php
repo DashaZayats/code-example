@@ -26,8 +26,8 @@ $wordCount = count($array);
 $array = array_slice($array, 0, 25);
 $newtext = implode(" ", $array);
 
-$this->registerMetaTag(['name' => 'keywords', 'content' => $category->title.", ".$newtext]);
-$this->registerMetaTag(['name' => 'description', 'content' => $newtext]);
+$this->registerMetaTag(['itemprop' => 'keywords', 'name' => 'keywords', 'content' => $category->title.", ".$newtext]);
+$this->registerMetaTag(['itemprop' => 'description', 'name' => 'description', 'content' => $newtext]);
 
 \yii\web\YiiAsset::register($this);
 ?>

@@ -15,10 +15,10 @@ use yii\helpers\Url;
                 <h4><a href="<?= Url::to(['/jobs/index']); ?>">Все заказы</a></h4>
             </div>
             <div class="ur-detail-wrap-body">
-                <ul class="advance-list">
+                <ul class="advance-list" itemscope itemtype="http://schema.org/SiteNavigationElement">
                     <?php foreach ($leftMenu as $item): ?>
                         <li>
-                            <a href="<?= Url::to(['jobs/view', 'slug' => $item['url']]); ?>">
+                            <a itemprop="url" href="<?= Url::to(['jobs/view', 'slug' => $item['url']]); ?>">
                                 <?= Html::encode($item['title']); ?>
                             </a>
                             <!--<span class="pull-right">102</span>-->
