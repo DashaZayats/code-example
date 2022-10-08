@@ -5,6 +5,8 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use frontend\components\ProfileMenuWidget;
 use frontend\components\ProjectStageWidget;
+use yii\widgets\ActiveForm;
+use app\models\Projects;
 
 $this->title = 'Мои проекты';
 $this->params['breadcrumbs'][] = ['label' => 'Панель управления', 'url'=>Url::toRoute('/profile')];
@@ -13,7 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <section class="advance-search gray">
     <div class="container">
             <div class="row">
-
                     <div class="col-md-3 col-sm-12">
                         <div class="full-sidebar-wrap">
                             <?= ProfileMenuWidget::widget(); ?>
@@ -57,25 +58,57 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         <li><span class="date time_ago" data-timestamp="<?php echo strtotime($project['create_date']);?>"><?php echo $project['create_date'];?></span></li>
                                                     </ul>
                                             </div>
+                                        <?php
+                                          $model = Projects::findOne(['id' => $project['id']]);
+                                        ?>
                                         <?php if($project['status']==0):?>
                                         <span class="tg-themetag tg-featuretag tg-green_label">Прием заявок</span>
                                         <div class="col-md-3 col-sm-3">
                                             <div class="brows-job-link">
                                                 <a href="<?= Url::to(['profile/project', 'id' => $project['id']]); ?>" class="btn btn-warning">Выбрать исполнителя</a>
                                             </div>
+                                            
+                                            <!-- Кнопка завершить с модальным окном -->
+                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#responses<?php echo $project['id']?>" class="btn btn-dark close_project">Завершить</a>
+                                            <div class="modal fade in" id="responses<?php echo $project['id']?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="false" style="display: none">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <?= $this->render('../projects/_form_close', [
+                                                               'model' => new Projects, 'project_id' => $project['id'],'project_title' => $project['title'],
+                                                           ]) ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Кнопка завершить с модальным окном конец-->
+                                            
                                         </div>
                                         <?php elseif($project['status']==1):?>
                                         <span class="tg-themetag tg-featuretag tg-orange_label">Выполнение заказа</span>
                                         <div class="col-md-3 col-sm-3">
                                             <div class="brows-job-link">
-                                                <a href="job-apply-detail.html" class="btn btn-dark">Завершить</a>
+                                            <!-- Кнопка завершить с модальным окном -->
+                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#responses<?php echo $project['id']?>" class="btn btn-dark close_project">Завершить</a>
+                                            <div class="modal fade in" id="responses<?php echo $project['id']?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="false" style="display: none">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <?= $this->render('../projects/_form_close', [
+                                                               'model' => new Projects, 'project_id' => $project['id'],'project_title' => $project['title'],
+                                                           ]) ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Кнопка завершить с модальным окном конец-->
                                             </div>
                                         </div>
                                         <?php elseif($project['status']==2):?>
                                         <span class="tg-themetag tg-featuretag tg-grey_label">Завершен</span>
                                         <div class="col-md-3 col-sm-3">
                                             <div class="brows-job-link">
-                                                <a href="job-apply-detail.html" class="btn btn-success">Оценить исполнителя</a>
+                                                <a href="<?= Url::to(['profile/project', 'id' => $project['id']]); ?>" class="btn btn-primary">Просмотр</a>
                                             </div>
                                         </div>
                                         <?php endif;?>

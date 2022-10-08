@@ -120,7 +120,8 @@ class Projects extends \yii\db\ActiveRecord
         // для постаничной навигации получаем только часть товаров
         $query = Projects::find()->select('projects.*,jobs.title as cattitle,jobs.url as category_url')
                 ->leftJoin('jobs', 'projects.category_id = jobs.id')
-                ->where(['projects.created_by_id' => $id]);
+                ->where(['projects.created_by_id' => $id])
+                ->orderBy(['projects.create_date' => SORT_DESC]);
         $pages = new Pagination([
             'totalCount' => $query->count(),
             // количество товаров на странице теперь в настройках

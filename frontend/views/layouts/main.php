@@ -20,6 +20,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php $this->registerCsrfMetaTags() ?>
     <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="<?php echo Yii::$app->request->absoluteUrl?>">
     <title itemprop="headline"><?= Html::encode($this->title)?></title>
 
     <?php $this->head() ?>

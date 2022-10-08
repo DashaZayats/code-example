@@ -30,6 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- End Sidebar -->
             <div class="col-md-9 col-sm-12">
                 <div class="container-detail-box">
+                    <?php if($model['status']==0):?>
+                    <span class="tg-themetag tg-featuretag tg-green_label">Прием заявок</span>
+                    <?php elseif($model['status']==1):?>
+                    <span class="tg-themetag tg-featuretag tg-blue_label">Исполнитель определен</span>
+                    <?php elseif($model['status']==2):?>
+                    <span class="tg-themetag tg-featuretag tg-grey_label">Завершен</span>
+                    <?php endif;?>
                     <div class="row">
                         <div class="col-md-8 col-sm-12">
                             <div class="apply-job-header">
