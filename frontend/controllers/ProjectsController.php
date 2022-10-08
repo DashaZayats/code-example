@@ -44,13 +44,15 @@ class ProjectsController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ProjectsSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->redirect(['/jobs']); // or where you want to redirect?
+   //     $searchModel = new ProjectsSearch();
+   //     $dataProvider = $searchModel->search($this->request->queryParams);
+
+   //     return $this->render('index', [
+  //          'searchModel' => $searchModel,
+   //         'dataProvider' => $dataProvider,
+   //     ]);
     }
 
     /**

@@ -50,8 +50,10 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => true, 
+            'suffix' => '',
             'rules' => array(
                     '/' => 'site/index', //для главной страницы
+                   
                     'site/captcha' => 'site/captcha', //для капчи ничего не меняем
                     //эти страницы будут открываться при указании только одного действия
                     '<action:search|login|logout|signup|request-password-reset|about|contact>' => 'site/<action>',
@@ -60,6 +62,7 @@ return [
                //     'jobs/<id:[-_0-9a-zA-Z]+>/' => 'jobs/view',
                     'jobs/<slug:[-_0-9a-zA-Z]+>/' => 'jobs/view',
                     'responses/create' => 'responses/create',
+                    'projects' => 'projects/index',
                     'projects/create' => 'projects/create',
                     'projects/update/<id:[-_0-9a-zA-Z]+>/' => 'projects/update',
                     'projects/<url:[-_0-9a-zA-Z]+>/' => 'projects/view',
@@ -72,7 +75,8 @@ return [
                     'profile/update' => 'profile/update',
                     'messages/create' => 'messages/create',
                     'sitemap.xml' => 'site/sitemap',
-                
+                    'controller/action/' => 'controller/action',
+                    '<url:.+>/' => 'site/redirect',
                 ),
         ],
  

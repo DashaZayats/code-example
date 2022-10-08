@@ -7,6 +7,7 @@ use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
+use yii\web\NotFoundHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -309,5 +310,16 @@ class SiteController extends Controller
         Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
         Yii::$app->response->headers->add('Content-Type', 'text/xml');
         return $this->renderPartial('sitemap', ['urls' => $urls]);
+    }
+    
+    // Перенаправление на страницу без слеш + добавить в config/main.php "'<url:.+>/' => 'site/redirect'"
+    public function actionRedirect($url = '')
+    {
+
+        if (substr($url, -1) === '/') {
+            return $this->redirect('/' . substr($url, 0, -1), 301);
+        } else {
+            throw new NotFoundHttpException;
+        }
     }
 }
