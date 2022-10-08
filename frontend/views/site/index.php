@@ -36,8 +36,11 @@ $this->registerMetaTag(['itemprop' => 'description', 'name' => 'description', 'c
             <div class="row">
                 <?php foreach($jobs as $category):?>
                 <div class="col-md-3 col-sm-3">
-                    <div class="category-box" data-aos="fade-up">
+                    <div class="category-box" data-aos="fade-up" onclick="window.location.href='<?= Url::to(['jobs/view', 'slug' => $category['url']]); ?>'">
                         <div class="category-desc">
+                            <div class="category-icon">
+                                <i class="<?php echo $category['icon']?>"></i>
+                            </div>
                             <div class="category-detail category-desc-text">
                                 <h4> <a href="<?= Url::to(['jobs/view', 'slug' => $category['url']]); ?>"><?php echo $category['title']?></a></h4>
                                 <p><?php echo $category['projectCount']?> предложений</p>

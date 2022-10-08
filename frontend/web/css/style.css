@@ -10798,3 +10798,6 @@ img.logo.logo-scrolled {
 .header-menu{
     position:relative;
 }
+.category-box{
+    cursor:pointer;
+}
