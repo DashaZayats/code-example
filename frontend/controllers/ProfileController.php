@@ -57,12 +57,28 @@ class ProfileController extends Controller
      */
     public function actionIndex()
     {
-        $temp = new Projects();
-        list($projects, $pages) = $temp->getUserProjects();
+        // количество активных заявок
+        $countBlocks['ActiveResponses'] = Projects::find()
+                                ->where(['worker_id' => Yii::$app->user->identity->id, 'status'=> 'IN(0,1)' ])
+                                ->count();
+
+        // количество приглашений к проекту
+        $countBlocks['ActiveInvite'] = Projects::find()
+                                ->where(['worker_id' => Yii::$app->user->identity->id, 'status'=> 1 ])
+                                ->count();
+
+         
+        // количество активных проетов
+        $countBlocks['ActiveProjects'] = Projects::find()
+                                ->where(['created_by_id' => Yii::$app->user->identity->id, 'status'=> 'IN(0,1)' ])
+                                ->count();
+
+    //    $temp = new Projects();
+    //    list($projects, $pages) = $temp->getUserProjects();
                 
         return $this->render(
             'index',
-            compact('projects', 'pages')
+            compact('countBlocks')
         );
     }
    /**
@@ -114,6 +130,8 @@ class ProfileController extends Controller
 
         if(!empty($model)){
             $category = Jobs::findOne($model->category_id);
+        }else{
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
        
         if(Yii::$app->user->isGuest){
@@ -126,14 +144,52 @@ class ProfileController extends Controller
         foreach($responsesList as $key=>$response){
             $responsesList[$key]['messages'] = Messages::find()->select('*')->where(['response_id'=>$response['id']])->orderBy(['create_date' => SORT_DESC])->asArray()->all();
         }
-        
 
+        if($model['created_by_id']!=Yii::$app->user->identity->id){
+            return $this->redirect(['/']);
+        }
         return $this->render(
             'projects_view',
             compact('model', 'category','responsesUserCount', 'responsesList')
         );
     }
-    
+    /**
+     * Displays a single Projects model.
+     * @param int $id ID
+     * @return string
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionResponse($id)
+    {
+
+  
+        $model = Projects::findOne(['id' => $id]);
+
+        if(!empty($model)){
+            $category = Jobs::findOne($model->category_id);
+        }else{
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+       
+        if(Yii::$app->user->isGuest){
+            $responsesUserCount = 0;
+        }else{
+            $responsesUserCount = Responses::find()->where(['user_id' => Yii::$app->user->identity->id ,'project_id'=>$id])->one();
+        }
+        $responsesList = Responses::find()->select('responses.*,user.email as user_email, user.username as user_name')->leftJoin('user', 'responses.user_id = user.id')->where(['responses.project_id'=>$id])->asArray()->all();
+        
+        foreach($responsesList as $key=>$response){
+            $responsesList[$key]['messages'] = Messages::find()->select('*')->where(['response_id'=>$response['id']])->orderBy(['create_date' => SORT_DESC])->asArray()->all();
+        }
+        if($model['worker_id']!=Yii::$app->user->identity->id){
+            return $this->redirect(['/']);
+        }
+
+        return $this->render(
+            'responses_view',
+            compact('model', 'category','responsesUserCount', 'responsesList')
+        );
+    }
     /**
      * Displays a single Profile model.
      * @param int $id ID

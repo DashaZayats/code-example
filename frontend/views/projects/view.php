@@ -84,15 +84,15 @@ $this->registerMetaTag(['itemprop' => 'description', 'name' => 'description', 'c
                     <?php if($model['status']!=2):?>
                         <?php if (Yii::$app->user->isGuest) : ?>
                             <div style="text-align:right;"><b>Авторизуйтесь, чтобы оставить заявку</b></div>
-                        <?php else:?>
 
+                        <?php elseif($model->created_by_id != Yii::$app->user->identity->id):?>
+ 
                             <?php if(empty($responsesUserCount)):?>
                                 <div style="text-align:right;"><a href="javascript:void(0)" data-toggle="modal" data-target="#responses" class="btn btn-primary">Отправить заявку</a></div>
                             <?php else:?>
                             <div style="text-align:right;"><b>Вы уже оставляли заявку. Детали смотрите в кабинете пользователя</b></div>
-
-
                             <?php endif;?>
+
                         <?php endif;?>
                     <?php endif;?>
                 </div>

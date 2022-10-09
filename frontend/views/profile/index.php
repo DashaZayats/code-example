@@ -26,34 +26,36 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="dashboard-body">
                     <div class="dashboard-caption">
                         <div class="dashboard-caption-wrap">
-<?php
-/*
+
                             <!-- Overview -->
                             <div class="row">
                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                     <div class="dashboard-stat widget-1">
-                                        <div class="dashboard-stat-content"><h4>35</h4> <span>Активных заявок</span></div>
+                                        <div class="dashboard-stat-content"><h4><?php echo $countBlocks['ActiveResponses']?></h4> <span>Активных заявок</span></div>
                                         <div class="dashboard-stat-icon"><i class="ti-location-pin"></i></div>
                                     </div>	
                                 </div>
 
                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                     <div class="dashboard-stat widget-2">
-                                        <div class="dashboard-stat-content"><h4>3</h4> <span>Приглашения к сотрудничеству</span></div>
+                                        <div class="dashboard-stat-content"><h4><?php echo $countBlocks['ActiveInvite']?></h4> <span>Приглашения к сотрудничеству</span></div>
                                         <div class="dashboard-stat-icon"><i class="ti-layers"></i></div>
                                     </div>	
                                 </div>
-
+<?php /*
                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                     <div class="dashboard-stat widget-3">
-                                        <div class="dashboard-stat-content"><h4>350</h4> <span>Просмотров профиля</span></div>
+                                        <div class="dashboard-stat-content"><h4>0</h4> <span>Просмотров профиля</span></div>
                                         <div class="dashboard-stat-icon"><i class="ti-pie-chart"></i></div>
                                     </div>	
                                 </div>
 
+ * 
+ */ ?>
+ 
                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                     <div class="dashboard-stat widget-4">
-                                        <div class="dashboard-stat-content"><h4>5</h4> <span>Активных проектов</span></div>
+                                        <div class="dashboard-stat-content"><h4><?php echo $countBlocks['ActiveProjects']?></h4> <span>Активных проектов</span></div>
                                         <div class="dashboard-stat-icon"><i class="ti-bookmark"></i></div>
                                     </div>	
                                 </div>
@@ -61,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
                 </div>
-*/?>
+
             </div>
         </div>
     </div>

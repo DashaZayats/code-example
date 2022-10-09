@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <h2><?= Html::encode($model->title) ?>
                                     <sup>
                                         <?php if($model->worker_id>0):?>
-                                            <span class="bg-trans-success cl-success" style='display:inline-block;float:right;'><i class="fa fa-check" aria-hidden="true"></i> Исполнитель определен</span>
+                                            <span class="bg-trans-success cl-success" style='display:inline-block;float:right;'><i class="fa fa-check" aria-hidden="true"></i> Вас выбрали исполнителем</span>
                                         <?php else:?>
                                             <span class="bg-trans-warning cl-warning" style='display:inline-block;float:right;'><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                                 Исполнитель не определен
@@ -105,18 +105,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php if(!empty($responsesList)):?>
                     <div class="container-detail-box">
                         <div class="comments">
-                            <h3>Заявки фрилансеров<span class="comments-amount">(<?php echo count($responsesList)?>)</span>
-                                <?php if($model->status>0):?>
-                                    <?php $form = ActiveForm::begin(['action' => Url::to(['projects/update/', 'id' => $model->id])]);?>
-                                    <?= $form->field($model, 'worker_id')->hiddenInput(['value'=>0])->label(false); ?>
-                                    <?= $form->field($model, 'status')->hiddenInput(['value'=>0])->label(false); ?> 
-                                    <?= Html::submitButton('<i class="fa fa-repeat" aria-hidden="true"></i> Возобновить прием заявок', ['class' => 'btn btn-warning', 'style'=>'padding:6px 12px']) ?>
-                                    <?php ActiveForm::end(); ?>
-                                <?php endif;?>
+                            <h3>Ваша заявка
+
                             </h3>
                             <ul>
                                 <?php foreach($responsesList as $response):?>
-                                    <li <?php if($model->worker_id==$response['user_id']):?>class="selected_worker"<?php endif;?>>
+                                <?php if($model->worker_id==$response['user_id']):?>
+                                    <li class="selected_worker">
                                         <div class="user_response_block">
                                             <div class="col-md-8">
                                                 <div class="avatar"><img src="/img/avatar.png" alt=""></div>
@@ -196,6 +191,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         </div>
                                         <?php endif;?>
                                     </li>
+                                    <?php endif;?>
                                 <?php endforeach;?>
                              </ul>
                         </div>
