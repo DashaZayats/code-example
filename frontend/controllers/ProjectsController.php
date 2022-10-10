@@ -95,33 +95,38 @@ class ProjectsController extends Controller
     public function actionCreate()
     {
         $model = new Projects();
-
+        $usermodel = new User();
+        
         if ($this->request->isPost) {
             $data = $this->request->post();
             $model->url = $this->translitstr($data['Projects']['title'], 'urltranslit');
-
+            if(Yii::$app->user->isGuest){
+                $isUserExist = $usermodel::find()->where(['email' => $data['SignupForm']['email']])->count();
+                if($isUserExist>0){
+                        Yii::$app->session->setFlash('error', 'Incorrect email is already exist in system. Please enter to your account.');
+                        return $this->render('create', [
+                        'model' => $model,
+                    ]);
+                }
+            }
             if ($model->load($this->request->post()) && $model->save(false)) {
                 
                 if(Yii::$app->user->isGuest){
-
-                    $usermodel = new User();
                     $usermodel->email = $data['SignupForm']['email'];
                     $usermodel->password_hash = Yii::$app->security->generatePasswordHash($data['SignupForm']['password']);
 
                     $usermodel->generateAuthKey();
                     $usermodel->generateEmailVerificationToken();
-                //    print_r($usermodel);exit;
+
                     $usermodel->save(false);
+
                    // $identity=new UserIdentity($usermodel->email,$data['Projects']['password']);
                     Yii::$app->user->login($usermodel->findByUsername($usermodel->email), 3600 * 24 * 30);
-              
                 }
-                
                 
                 $model->url = $this->translitstr($data['Projects']['title'], 'urltranslit').'-'.$model->id;
                 $model->created_by_id = Yii::$app->user->getId();
                 $model->save(false);
-
                 return $this->redirect(['view', 'url' => $model->url]);
             }
         } else {

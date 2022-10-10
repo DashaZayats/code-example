@@ -10801,3 +10801,39 @@ img.logo.logo-scrolled {
 .category-box{
     cursor:pointer;
 }
+
+/* rating start */
+.star-rating2{
+    font-size: 0;
+    margin-top:5px;
+}
+.star-rating2 label {
+  color: #d4d5dc;
+}
+.star-rating__wrap2{
+    display: inline-block;
+    font-size: 1rem;
+}
+.star-rating__wrap2:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.star-rating__ico{
+    float: right;
+    padding-left: 2px;
+    cursor: pointer;
+    color: #FFB300;
+}
+.star-rating__ico:last-child{
+    padding-left: 0;
+}
+.star-rating__input{
+    display: none;
+}
+.star-rating__ico:hover:before,
+.star-rating__ico:hover ~ .star-rating__ico:before,
+.star-rating__input:checked ~ .star-rating__ico:before{
+    color:#ff9b20;
+}
+/* rating end */

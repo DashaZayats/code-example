@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div class="newjob-list-layout">
                                             <div class="cll-wrap">
                                                     <div class="cll-caption">
+                     
                                                             <h4><a href="<?= Url::to(['profile/project', 'id' => $project['id']]); ?>"><?php echo $project['title']?></a></h4>
                                                             <?php
                                                             $array = explode(" ", $project['description']);
@@ -75,7 +76,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <div class="modal-content">
                                                         <div class="modal-body">
                                                             <?= $this->render('../projects/_form_close', [
-                                                               'model' => new Projects, 'project_id' => $project['id'],'project_title' => $project['title'],
+                                                                'model' => new Projects, 
+                                                                'project_id' => $project['id'],
+                                                                'project_title' => $project['title'],
+                                                                'from_user_id' => $project['created_by_id'],
+                                                                'user_id' => $project['worker_id'],
+                                                                'worker_email' => $project['worker_email'],
+                                                                'worker_imageFile' =>$project['worker_imageFile'],
                                                            ]) ?>
                                                         </div>
                                                     </div>
@@ -94,8 +101,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-body">
+                                          
                                                             <?= $this->render('../projects/_form_close', [
-                                                               'model' => new Projects, 'project_id' => $project['id'],'project_title' => $project['title'],
+                                                                'model' => new Projects, 
+                                                                'project_id' => $project['id'],
+                                                                'project_title' => $project['title'],
+                                                                'from_user_id' => $project['created_by_id'],
+                                                                'user_id' => $project['worker_id'],
+                                                                'worker_email' => $project['worker_email'],
+                                                                'worker_imageFile' =>$project['worker_imageFile'],
                                                            ]) ?>
                                                         </div>
                                                     </div>

@@ -30,7 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'model' => $model,
                                 'attributes' => [
                                     'description:ntext',
-                                    'type',
                                     'price_per_hour',
                                 ],
                             ]) ?>

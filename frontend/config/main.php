@@ -56,7 +56,7 @@ return [
                    
                     'site/captcha' => 'site/captcha', //для капчи ничего не меняем
                     //эти страницы будут открываться при указании только одного действия
-                    '<action:search|login|logout|signup|request-password-reset|about|contact>' => 'site/<action>',
+                    '<action:search|login|logout|signup|request-password-reset|about|contact|upload>' => 'site/<action>',
                     'jobs' => 'jobs/index',
                     'jobs/search' => 'jobs/search',
                //     'jobs/<id:[-_0-9a-zA-Z]+>/' => 'jobs/view',

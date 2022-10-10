@@ -4,11 +4,10 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use app\models\Profile;
-use app\models\ProfileSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Profile;
 use app\models\Projects;
 use app\models\Responses;
 use app\models\Jobs;
@@ -139,7 +138,7 @@ class ProfileController extends Controller
         }else{
             $responsesUserCount = Responses::find()->where(['user_id' => Yii::$app->user->identity->id ,'project_id'=>$id])->one();
         }
-        $responsesList = Responses::find()->select('responses.*,user.email as user_email, user.username as user_name')->leftJoin('user', 'responses.user_id = user.id')->where(['responses.project_id'=>$id])->asArray()->all();
+        $responsesList = Responses::find()->select('responses.*,user.email as user_email, user.username as user_name, user.imageFile as imageFile')->leftJoin('user', 'responses.user_id = user.id')->where(['responses.project_id'=>$id])->asArray()->all();
         
         foreach($responsesList as $key=>$response){
             $responsesList[$key]['messages'] = Messages::find()->select('*')->where(['response_id'=>$response['id']])->orderBy(['create_date' => SORT_DESC])->asArray()->all();
@@ -161,8 +160,7 @@ class ProfileController extends Controller
      */
     public function actionResponse($id)
     {
-
-  
+        
         $model = Projects::findOne(['id' => $id]);
 
         if(!empty($model)){
@@ -176,7 +174,7 @@ class ProfileController extends Controller
         }else{
             $responsesUserCount = Responses::find()->where(['user_id' => Yii::$app->user->identity->id ,'project_id'=>$id])->one();
         }
-        $responsesList = Responses::find()->select('responses.*,user.email as user_email, user.username as user_name')->leftJoin('user', 'responses.user_id = user.id')->where(['responses.project_id'=>$id])->asArray()->all();
+        $responsesList = Responses::find()->select('responses.*,user.email as user_email, user.username as user_name, user.imageFile as imageFile')->leftJoin('user', 'responses.user_id = user.id')->where(['responses.project_id'=>$id])->asArray()->all();
         
         foreach($responsesList as $key=>$response){
             $responsesList[$key]['messages'] = Messages::find()->select('*')->where(['response_id'=>$response['id']])->orderBy(['create_date' => SORT_DESC])->asArray()->all();
@@ -198,7 +196,6 @@ class ProfileController extends Controller
      */
     public function actionView()
     {
-        
         return $this->render('view', [
             'model' => $this->findModel(Yii::$app->user->identity->id),
         ]);

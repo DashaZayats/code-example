@@ -13,14 +13,15 @@ $(document).ready(function() {
         var formData = new FormData($('#imageForm')[0]);
         $.ajax({
              type: 'POST',
-             url: '/index.php?r=site%2Fupload',
+             url: '/upload',
              contentType: false,
              processData: false,
              data: formData,
 
              success: function(res){
                     console.log(res);
-                 //   $('#profile-imagefile').val('');
+                    $('#profile-imagefile').val('');
+                    $("#profile-img").attr('src','/img/'+res);
                 },
                 error: function(){
                     alert('Error!');
@@ -30,27 +31,27 @@ $(document).ready(function() {
 });
 </script>
 <div class="profile-form">
-<form id="imageForm" action="/index.php?r=profile%2Fupdate&amp;id=2" method="post" enctype="multipart/form-data">
+    <div class="dashboard-avatar">
+        <div class="dashboard-avatar-thumb">
+            <?php if($model['imageFile']!=''):?>
+            <img src="/img/<?php echo $model['imageFile']?>" id="profile-img" class="img-avater" alt="">
+            <?php else:?>
+            <img src="/img/avatar.png" id="profile-img" class="img-avater" alt="">
+            <?php endif;?>
+        </div>
+        <form id="imageForm" action="/update" method="post" enctype="multipart/form-data">
+            <div class="form-group field-profile-imagefile">
+                <label class="control-label" for="profile-imagefile">Фото</label>
+                <input type="hidden" name="Profile[imageFile]" value="">
+                <input type="file" id="profile-imagefile" name="Profile[imageFile]" value="">
 
-<div class="form-group field-profile-imagefile">
-<label class="control-label" for="profile-imagefile">Photo</label>
-<input type="hidden" name="Profile[imageFile]" value="">
-<input type="file" id="profile-imagefile" name="Profile[imageFile]" value="">
-
-<div class="help-block"></div>
-</div>
-</form>
+                <div class="help-block"></div>
+            </div>
+        </form>
+    </div>
 <?php $form = ActiveForm::begin() ?>
-
-
-    <?= $form->field($model, 'user_id')->hiddenInput(['value'=>Yii::$app->user->identity->id])->label(false); ?>
-
+    <?= $form->field($model, 'username')->textInput(['maxlength' => true])->label('Имя (Псевдоним)'); ?>
     <?= $form->field($model, 'description')->textarea(['rows' => 6])->label('Обо мне'); ?>
-
-
-
-    <?= $form->field($model, 'type')->dropDownList([ 'freelancer' => 'Фрилансер', 'employer' => 'Заказчик', ], ['prompt' => ''])->label('Тип'); ?>
-
     <?= $form->field($model, 'price_per_hour')->textInput(['maxlength' => true])->label('Стоимость работы в час'); ?>
 
     <div class="form-group">

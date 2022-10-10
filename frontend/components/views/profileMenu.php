@@ -5,7 +5,11 @@ use yii\helpers\Url;
 <div class="side-dashboard">
     <div class="dashboard-avatar">
         <div class="dashboard-avatar-thumb">
-            <img src="/img/avatar.png" class="img-avater" alt="">
+            <?php if(Yii::$app->user->identity->imageFile!=''):?>
+                <img src="/img/<?php echo Yii::$app->user->identity->imageFile?>" class="img-avater" alt="">
+            <?php else:?>
+                <img src="/img/avatar.png" class="img-avater" alt="">
+            <?php endif;?>
         </div>
         <div class="dashboard-avatar-text">
             <h4><?php echo Yii::$app->user->identity->username?></h4>

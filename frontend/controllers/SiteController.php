@@ -282,6 +282,10 @@ class SiteController extends Controller
     
     public function actionUpload()
     {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+     //   Yii::$app->response->headers->add('Content-Type', 'text/xml');
+  
+       
         $model = new UploadForm();
     
         if (Yii::$app->request->isPost) {
@@ -289,19 +293,21 @@ class SiteController extends Controller
             $model->imageFile = UploadedFile::getInstanceByName('Profile[imageFile]');
             if ($model->upload()) {
                 
-            $project_id = Yii::$app->user->identity->id;
-            $projectModel = new Profile();
-            $projectData = $projectModel::findOne(['id' => $project_id]);
-            $projectData->imageFile =  $model->imageFile->baseName . '.' . $model->imageFile->extension;
-            $projectData->save();
+                $user_id = Yii::$app->user->identity->id;
+               // print_r($user_id);exit;
+                $projectData = Profile::findOne(['id' => $user_id]);
+                $projectData->imageFile =  $model->imageFile->baseName . '.' . $model->imageFile->extension;
+                $projectData->save();
   
                 // file is uploaded successfully
-                return true;
+          
+                return $projectData->imageFile;
+              
             }
         }
      return false;
     }
-    
+
     
     //Карта сайта. Выводит в виде XML файла.
     public function actionSitemap(){

@@ -21,7 +21,7 @@ class Profile extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'profile';
+        return 'user';
     }
 
     /**
@@ -30,9 +30,8 @@ class Profile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'description', 'price_per_hour'], 'required'],
-            [['user_id'], 'integer'],
-            [['description', 'type'], 'string'],
+            [['description', 'price_per_hour'], 'required'],
+            [['description'], 'string'],
             [['price_per_hour'], 'number'],
             [['imageFile'], 'string', 'max' => 250],
         ];
@@ -45,11 +44,9 @@ class Profile extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user_id' => 'User ID',
-            'description' => 'Description',
-            'imageFile' => 'Photo',
-            'type' => 'Type',
-            'price_per_hour' => 'Price Per Hour',
+            'description' => 'Обо мне',
+            'imageFile' => 'Фото',
+            'price_per_hour' => 'Стоимость работы час',
         ];
     }
 }

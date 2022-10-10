@@ -118,8 +118,12 @@ class Projects extends \yii\db\ActiveRecord
     public function getProfileProjects() {
         $id = Yii::$app->user->identity->id;
         // для постаничной навигации получаем только часть товаров
-        $query = Projects::find()->select('projects.*,jobs.title as cattitle,jobs.url as category_url')
+        $query = Projects::find()->select('projects.*,jobs.title as cattitle,'
+                                        . 'jobs.url as category_url,'
+                                        . 'user.email as worker_email,'
+                                        . 'user.imageFile as worker_imageFile')
                 ->leftJoin('jobs', 'projects.category_id = jobs.id')
+                ->leftJoin('user', 'projects.worker_id = user.id')
                 ->where(['projects.created_by_id' => $id])
                 ->orderBy(['projects.create_date' => SORT_DESC]);
         $pages = new Pagination([

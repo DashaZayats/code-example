@@ -114,7 +114,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <li class="selected_worker">
                                         <div class="user_response_block">
                                             <div class="col-md-8">
-                                                <div class="avatar"><img src="/img/avatar.png" alt=""></div>
+                                                <?php if($response['imageFile']!=''):?>
+                                                <div class="avatar"><img src="/img/<?php echo $response['imageFile']?>" alt=""></div>
+                                                <?php else:?>
+                                                    <div class="avatar"><img src="/img/avatar.png" alt=""></div>
+                                                <?php endif;?>
                                                 <div class="comment-content">
                                                     <div class="arrow-comment"></div>
                                                     <div class="comment-by col-md-8">
@@ -127,7 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             <i class="fa fa-star filled"></i>
                                                             <i class="fa fa-star filled"></i>
                                                             <i class="fa fa-star filled"></i>
-                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star filled"></i>
                                                         </div>
                                                         <!-- -end rating-->
                                                     </div>
