@@ -30,7 +30,8 @@ class Profile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description', 'price_per_hour'], 'required'],
+            [['username', 'description', 'price_per_hour'], 'required'],
+            [['username'], 'string', 'max' => 250],
             [['description'], 'string'],
             [['price_per_hour'], 'number'],
             [['imageFile'], 'string', 'max' => 250],
@@ -44,9 +45,10 @@ class Profile extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'username' => 'Имя (псевдоним)',
             'description' => 'Обо мне',
             'imageFile' => 'Фото',
-            'price_per_hour' => 'Стоимость работы час',
+            'price_per_hour' => 'Стоимость работы час, $',
         ];
     }
 }

@@ -11,19 +11,19 @@ use app\models\Rating;
 ?>
 
 <div class="projects-form">
-    <?php $form = ActiveForm::begin(['action' => Url::to(['projects/update/', 'id' => $project_id])]);?>
-    <h3 class="text-center">Вы действительно хотите завершить проект?</h3>
+    <?php $form = ActiveForm::begin(['action' => Url::to(['projects/updateresponses/', 'id' => $project_id])]);?>
+    <h3 class="text-center">Проект завершен</h3>
     <p><b>
         <i class="fa fa-quote-left" aria-hidden="true"></i>
             <?php echo $project_title?>
         <i class="fa fa-quote-right" aria-hidden="true"></i>
         </b></p>
-    <?= $form->field($model, 'end_date')->hiddenInput(['value'=>date('Y-m-d H:i:s')])->label(false); ?>
-    <?= $form->field($model, 'status')->hiddenInput(['value'=>2])->label(false); ?>
+
+    <?= $form->field($model, 'worker_id')->hiddenInput(['value'=>$from_user_id])->label(false); ?>
     
     <?php if($user_id>0 && isset($user_id)):?>
         <?php $rating = new Rating;?>
-        <h3 class="text-center">Оцените исполнителя</h3>
+        <h3 class="text-center">Оцените работодателя</h3>
         <?= $form->field($rating, 'user_id')->hiddenInput(['value'=>$user_id])->label(false); ?>
         <?= $form->field($rating, 'from_user_id')->hiddenInput(['value'=>$from_user_id])->label(false); ?>
         <div class="col-md-12">
@@ -67,7 +67,7 @@ use app\models\Rating;
     
 
     <div class="form-group" style="text-align: right;">
-        <?= Html::submitButton('Завершить', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('Оценить работодателя', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

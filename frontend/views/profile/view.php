@@ -23,12 +23,22 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="dashboard-caption-header">
                         <h4><i class="ti-wallet"></i>Мой профиль</h4>
                     </div>
+                    <div class="dashboard-avatar">
+                        <div class="dashboard-avatar-thumb">
+                            <?php if($model['imageFile']!=''):?>
+                            <img src="/img/<?php echo $model['imageFile']?>" id="profile-img" class="img-avater" alt="">
+                            <?php else:?>
+                            <img src="/img/avatar.png" id="profile-img" class="img-avater" alt="">
+                            <?php endif;?>
+                        </div>
+                    </div>
                     <!--Browse Job -->							
                     <div class="row">
                         <div class="col-md-12">
                             <?= DetailView::widget([
                                 'model' => $model,
                                 'attributes' => [
+                                    'username',
                                     'description:ntext',
                                     'price_per_hour',
                                 ],

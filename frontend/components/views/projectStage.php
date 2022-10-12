@@ -11,7 +11,7 @@
     </div>
     <div class="statistic-item flex-middle">
         <div class="icon text-theme">
-        <i class="ti-desktop theme-cl"></i></div>
-        <span class="text">Выполнение заказа</span>
+        <i class="ti-face-smile theme-cl"></i></div>
+        <span class="text">Завершение заказа</span>
     </div>
 </div>

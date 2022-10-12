@@ -50,9 +50,9 @@ $(document).ready(function() {
         </form>
     </div>
 <?php $form = ActiveForm::begin() ?>
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true])->label('Имя (Псевдоним)'); ?>
+    <?= $form->field($model, 'username')->textInput(['maxlength' => true])->label('Имя (псевдоним)'); ?>
     <?= $form->field($model, 'description')->textarea(['rows' => 6])->label('Обо мне'); ?>
-    <?= $form->field($model, 'price_per_hour')->textInput(['maxlength' => true])->label('Стоимость работы в час'); ?>
+    <?= $form->field($model, 'price_per_hour')->textInput(['maxlength' => true])->label('Стоимость работы в час, $'); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>

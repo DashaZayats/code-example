@@ -13,6 +13,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Jobs;
 use app\models\Responses;
+use app\models\Rating;
 
 /**
  * ProjectsController implements the CRUD actions for Projects model.
@@ -160,6 +161,16 @@ class ProjectsController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+
+            $ratingmodel = new Rating();
+            $data = $this->request->post();
+            if(isset($data['Rating']) && isset($data['Rating']['rating'])){
+                $ratingmodel->user_id = $data['Rating']['user_id'];
+                $ratingmodel->from_user_id = $data['Rating']['from_user_id'];
+                $ratingmodel->rating = $data['Rating']['rating'];
+                $ratingmodel->save();
+            }
+            
             return $this->redirect(['profile/project', 'id' => $model->id]);
         }
 
@@ -167,7 +178,35 @@ class ProjectsController extends Controller
             'model' => $model,
         ]);
     }
+    /**
+     * Updates an existing Projects model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id ID
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdateresponses($id)
+    {
+        $model = $this->findModel($id);
 
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            
+            $ratingmodel = new Rating();
+            $data = $this->request->post();
+            if(isset($data['Rating']) && isset($data['Rating']['rating'])){
+                $ratingmodel->user_id = $data['Rating']['user_id'];
+                $ratingmodel->from_user_id = $data['Rating']['from_user_id'];
+                $ratingmodel->rating = $data['Rating']['rating'];
+                $ratingmodel->save();
+            }
+            
+            return $this->redirect(['profile/responses']);
+        }
+
+        return $this->render('../profile/responses_view', [
+            'model' => $model,
+        ]);
+    }
     /**
      * Deletes an existing Projects model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

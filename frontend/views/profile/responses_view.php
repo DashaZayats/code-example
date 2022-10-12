@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Панель управления', 'url'=>Url::toRoute('/profile')];
-$this->params['breadcrumbs'][] = ['label' => 'Мои проекты', 'url'=>Url::toRoute('/profile/projects')];
+$this->params['breadcrumbs'][] = ['label' => 'Приглашения на проекты', 'url'=>Url::toRoute('/profile/responses')];
 $this->params['breadcrumbs'][] = $this->title;
 
 
@@ -160,8 +160,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-body">
-                                                                    <?= $this->render('../messages/_form', [
-                                                                       'model' => new Messages,'response'=>$response
+                                                                    <?= $this->render('../messages/_form_responses', [
+                                                                       'model' => new Messages,'response'=>$response,'to_user_id'=>$model->created_by_id,
                                                                    ]) ?>
                                                                 </div>
                                                             </div>

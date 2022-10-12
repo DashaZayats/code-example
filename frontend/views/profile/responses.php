@@ -4,12 +4,13 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use frontend\components\ProfileMenuWidget;
 use frontend\components\ProjectStageWidget;
+use app\models\Projects;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\JobsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Приглашения на работу';
+$this->title = 'Приглашения на проекты';
 $this->params['breadcrumbs'][] = ['label' => 'Панель управления', 'url'=>Url::toRoute('/profile')];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -64,14 +65,58 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <span class="tg-themetag tg-featuretag tg-orange_label">Приглашение на проект</span>
                                         <div class="col-md-3 col-sm-3">
                                             <div class="brows-job-link">
-                                                <a href="job-apply-detail.html" class="btn btn-dark">Отказаться</a>
+                                            <!-- Кнопка отказаться с модальным окном -->
+                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#responses<?php echo $project['id']?>" class="btn btn-dark close_project">Отказаться</a>
+                                            <div class="modal fade in" id="responses<?php echo $project['id']?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="false" style="display: none">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <?= $this->render('../projects/_form_close_responses', [
+                                                                'model' => new Projects, 
+                                                                'project_id' => $project['id'],
+                                                                'project_title' => $project['title'],
+                                                                'user_id' => $project['created_by_id'],
+                                                                'from_user_id' => $project['worker_id'],
+                                                                'worker_email' => $project['worker_email'],
+                                                                'worker_imageFile' => $project['worker_imageFile'],
+                                                                'worker_username' =>  $project['worker_username'],
+                                                           ]) ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Кнопка завершить с модальным окном конец-->
                                             </div>
                                         </div>
                                         <?php elseif($project['status']==2):?>
                                         <span class="tg-themetag tg-featuretag tg-grey_label">Завершен</span>
                                         <div class="col-md-3 col-sm-3">
                                             <div class="brows-job-link">
-                                                <a href="job-apply-detail.html" class="btn btn-success">Оценить работодателя</a>
+                                                <a href="<?= Url::to(['profile/response', 'id' => $project['id']]); ?>" class="btn btn-primary">Просмотр</a>
+                                            <?php /*
+                                            <!-- Кнопка отказаться с модальным окном -->
+                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#responses<?php echo $project['id']?>" class="btn btn-success close_project">Оценить работодателя</a>
+                                            <div class="modal fade in" id="responses<?php echo $project['id']?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="false" style="display: none">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <?= $this->render('../projects/_form_close_responses_end', [
+                                                                'model' => new Projects, 
+                                                                'project_id' => $project['id'],
+                                                                'project_title' => $project['title'],
+                                                                'user_id' => $project['created_by_id'],
+                                                                'from_user_id' => $project['worker_id'],
+                                                                'worker_email' => $project['worker_email'],
+                                                                'worker_imageFile' => $project['worker_imageFile'],
+                                                                'worker_username' =>  $project['worker_username'],
+                                                           ]) ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Кнопка оценить работатдателя с модальным окном конец-->
+                                            */?>
+                                            
                                             </div>
                                         </div>
                                         <?php endif;?>

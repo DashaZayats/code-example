@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
+<a href="<?= Url::to(['projects/create']); ?>" class="rainbow-button" alt="Разместить заказ"></a><br>
 <div class="side-dashboard">
     <div class="dashboard-avatar">
         <div class="dashboard-avatar-thumb">

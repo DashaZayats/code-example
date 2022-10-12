@@ -29,16 +29,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <!-- Overview -->
                             <div class="row">
+<?php /*
                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                     <div class="dashboard-stat widget-1">
                                         <div class="dashboard-stat-content"><h4><?php echo $countBlocks['ActiveResponses']?></h4> <span>Активных заявок</span></div>
                                         <div class="dashboard-stat-icon"><i class="ti-location-pin"></i></div>
                                     </div>	
                                 </div>
-
+ * 
+ */ ?>
                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                     <div class="dashboard-stat widget-2">
-                                        <div class="dashboard-stat-content"><h4><?php echo $countBlocks['ActiveInvite']?></h4> <span>Приглашения к сотрудничеству</span></div>
+                                        <div class="dashboard-stat-content"><h4><?php echo $countBlocks['ActiveInvite']?></h4> <span>Приглашения на проекты</span></div>
                                         <div class="dashboard-stat-icon"><i class="ti-layers"></i></div>
                                     </div>	
                                 </div>
@@ -55,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
  
                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                     <div class="dashboard-stat widget-4">
-                                        <div class="dashboard-stat-content"><h4><?php echo $countBlocks['ActiveProjects']?></h4> <span>Активных проектов</span></div>
+                                        <div class="dashboard-stat-content"><h4><?php echo $countBlocks['ActiveProjects']?></h4> <span>Мои активные проекты</span></div>
                                         <div class="dashboard-stat-icon"><i class="ti-bookmark"></i></div>
                                     </div>	
                                 </div>

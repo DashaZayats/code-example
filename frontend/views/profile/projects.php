@@ -83,6 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                 'user_id' => $project['worker_id'],
                                                                 'worker_email' => $project['worker_email'],
                                                                 'worker_imageFile' =>$project['worker_imageFile'],
+                                                                'worker_username' =>  $project['worker_username'],
                                                            ]) ?>
                                                         </div>
                                                     </div>
@@ -110,6 +111,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                 'user_id' => $project['worker_id'],
                                                                 'worker_email' => $project['worker_email'],
                                                                 'worker_imageFile' =>$project['worker_imageFile'],
+                                                                'worker_username' =>  $project['worker_username'],
                                                            ]) ?>
                                                         </div>
                                                     </div>

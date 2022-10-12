@@ -85,7 +85,31 @@ class MessagesController extends Controller
             'model' => $model,
         ]);
     }
+    /**
+     * Creates a new Messages model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return string|\yii\web\Response
+     */
+    public function actionCreateresponses()
+    {
+        $model = new Messages();
 
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                
+            Yii::$app->session->setFlash('success', 'Ваше сообщение отправлено.');
+
+            return $this->redirect(['profile/response', 'id' => $model->project_id]);
+                
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('create_responses', [
+            'model' => $model,
+        ]);
+    }
     /**
      * Updates an existing Messages model.
      * If update is successful, the browser will be redirected to the 'view' page.
