@@ -3,6 +3,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use frontend\components\LeftMenuWidget;
 use frontend\components\ProjectStageWidget;
+use frontend\components\RelatedJobsWidget;
 use app\models\Responses;
 
 /* @var $this yii\web\View */
@@ -98,6 +99,7 @@ $this->registerMetaTag(['itemprop' => 'description', 'name' => 'description', 'c
                 </div>
                 
                 <?= ProjectStageWidget::widget(); ?>
+                <?= RelatedJobsWidget::widget(['slug' => $category->url, 'currentJobId' => $model->id]); ?>
             </div>
 
             <!-- Sidebar Start-->
