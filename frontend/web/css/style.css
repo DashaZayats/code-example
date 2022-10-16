@@ -1486,7 +1486,7 @@ input[type=file]:focus,input[type=checkbox]:focus,input[type=radio]:focus{
 	box-shadow:none
 }
 nav.navbar.bootsnav ul.nav > li > a{
-	color:#fff;
+	color:#777;
 	text-transform:uppercase;
 	background-color:transparent!important
 }
@@ -2463,7 +2463,7 @@ a.video-btn:hover i{
 	font-weight:400
 }
 .testimonial{
-	background:#f4f7f7
+	background:#ecf0f7
 }
 #appller-testimonial-slider{
 	margin-top:2.5em;
@@ -9060,7 +9060,7 @@ nav.navbar.bootsnav .dropdown .megamenu-content .col-menu ul > li > a{
 	padding:8px 0
 }
 ul.menu-col li a{
-	color:#b6c8d6;
+	color:#777;
 	font-size:15px
 }
 nav.navbar.bootsnav ul.nav li.dropdown ul.dropdown-menu>li>a{
@@ -9312,7 +9312,7 @@ h2.detail-title{
 	padding-right:10px
 }
 nav.navbar .navbar-brand{
-	top:4px
+	top:9px
 }
 .brows-job-list{
 	text-align:center;
@@ -9375,7 +9375,7 @@ nav.navbar .navbar-brand{
 .newjob-list-layout .cll-right{
 	display:flex;
 	align-items:center;
-	justify-content:center
+	justify-content:right;
 }
 .job-types{
 	text-align:left

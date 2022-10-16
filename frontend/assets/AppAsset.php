@@ -32,10 +32,11 @@ class AppAsset extends AssetBundle
        // 'js/slick.js',
        // 'js/gmap3.js',
      //   'js/jquery_002.js',
+        'js/owl.js',
         'js/time_ago.js',
-        'js/site.js',
         'js/fontawesome.js',
-        'js/bootsnav.js'
+        'js/bootsnav.js',
+        'js/site.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

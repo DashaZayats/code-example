@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use app\models\Projects;
 use yii\data\Pagination;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "jobs".
@@ -93,6 +94,21 @@ class Jobs extends \yii\db\ActiveRecord
             ->all();
 
         return [$projects, $pages];
+    }
+    public function getRelatedJobs($id){
+        $id = (int)$id;
+        // для постаничной навигации получаем только часть товаров
+        $projects = Projects::find()
+                ->select('projects.*,jobs.title as cattitle,jobs.url as category_url')
+                ->leftJoin('jobs', 'projects.category_id = jobs.id')
+                ->where(['category_id' => $id])
+                ->orderBy(new Expression('rand()'))
+                ->limit(5)
+                ->asArray()
+                ->all();
+
+
+        return $projects;
     }
 
     public function getProjects(){

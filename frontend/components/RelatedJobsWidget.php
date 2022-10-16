@@ -26,8 +26,7 @@ class RelatedJobsWidget extends Widget {
             $temp = new Jobs();
             $category = $temp::find()->where(['url' => $this->slug])->one();
 
-            list($projects, $pages) = $temp->getCatProjects($category->id);
-            
+            $projects = $temp->getRelatedJobs($category->id);
             $this->data = $projects;
             if ( ! empty($this->data)) {
                 $html = $this->render('relatedJobs', ['relatedJobs' => $this->data, 'currentJobId' => $this->currentJobId]);

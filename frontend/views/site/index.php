@@ -1,5 +1,7 @@
 <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
+use frontend\components\TopFreelancersWidget;
 /** @var yii\web\View $this */
 
 $this->title = 'Биржа фриланса Freetask — Удаленная работа. Фриланс работа и вакансии, фрилансер, работа на дому.';
@@ -74,3 +76,6 @@ $this->registerMetaTag(['itemprop' => 'description', 'name' => 'description', 'c
     </section>
     <div class="clearfix"></div>
 <?php endif;?>
+<div class="clearfix"></div>
+<?= TopFreelancersWidget::widget(['slug' => 0, 'currentJobId' => 0]); ?>
+<div class="clearfix"></div>

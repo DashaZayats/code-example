@@ -31,9 +31,10 @@ AppAsset::register($this);
     <div class="wrapper">
         <div class="Loader"></div>
         <div class="wrapper">
-            <nav class="navbar navbar-default navbar-fixed navbar-light white bootsnav on no-full">
+            
+            <nav class="navbar navbar-default navbar-fixed navbar-light white bootsnav">
                 <div class="container header-menu">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu"><i class="fa fa-bars"></i></button>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu"><i class="fa fa-bars"></i></button>
                     <div class="navbar-header">
                         <a class="navbar-brand" href="<?php echo Yii::$app->homeUrl?>"><img width="200px" height="40px" src="/logo.png" class="logo logo-scrolled" alt=""></a>
                     </div>
@@ -45,7 +46,7 @@ AppAsset::register($this);
                                 <?php echo Html::endForm() ?>
                             </li>
                             <li class="dropdown megamenu-fw">
-                                <a href="<?= Url::to(['jobs/index']);?>" class="dropdown-toggle" data-toggle="dropdown">Работа</a>
+                                <a href="<?= Url::to(['jobs/index']);?>" class="dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Работа</a>
                                 <?= TopMenuWidget::widget() ?>
                             </li>
                         </ul>

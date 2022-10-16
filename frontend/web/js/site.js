@@ -29,4 +29,17 @@ All custom js files contents are below
 	});
 	
 
-	})(jQuery);
+	/*--- Client Story testimonial --*/
+	$("#client-testimonial-slider").owlCarousel({
+		items:3,
+		itemsDesktop:[1180,3],
+		itemsDesktopSmall:[979,2],
+		itemsTablet:[768,1],
+		pagination: false,
+		navigation:true,
+		navigationText:["",""],
+		autoPlay:true
+	});
+
+
+})(jQuery);

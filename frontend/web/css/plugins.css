@@ -10378,7 +10378,6 @@ nav.bootsnav.navbar-sidebar .dropdown .megamenu-content .col-menu ul.menu-col li
 	nav.navbar.bootsnav .navbar-brand{
 	display:inline-block;
 	float:none!important;
-	margin:0!important
 }
 nav.navbar.bootsnav .navbar-header{
 	float:none;
@@ -10404,7 +10403,7 @@ nav.navbar.bootsnav.no-full .navbar-collapse{
 nav.navbar.bootsnav .navbar-collapse.collapse{
 	display:none!important
 }
-nav.navbar.bootsnav .navbar-collapse.collapse.in{
+nav.navbar.bootsnav .navbar-collapse.collapse.in,nav.navbar.bootsnav .navbar-collapse.collapse.show{
 	display:block!important
 }
 nav.navbar.bootsnav .navbar-nav{
@@ -10557,6 +10556,9 @@ nav.bootsnav .megamenu-content .title{
 }
 .attr-nav>ul>li.dropdown>a.dropdown-toggle:before,nav.bootsnav .megamenu-content .content{
 	display:none
+}
+ nav.bootsnav .on .megamenu-content .content{
+    	display:block;
 }
 .attr-nav{
 	position:absolute;

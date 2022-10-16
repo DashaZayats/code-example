@@ -51,4 +51,19 @@ class Profile extends \yii\db\ActiveRecord
             'price_per_hour' => 'Стоимость работы час, $',
         ];
     }
+    
+    public function getTopFreelancers(){
+        // для постаничной навигации получаем только часть товаров
+        $freelancers = self::find()
+                ->select('user.*,profile_rating.rating as rating')
+                ->leftJoin('profile_rating', 'user.id = profile_rating.user_id')
+          //      ->where(['profile_rating.rating' => '>0'])
+                ->orderBy('profile_rating.rating')
+                ->limit(3)
+                ->asArray()
+                ->all();
+
+
+        return $freelancers;
+    }
 }

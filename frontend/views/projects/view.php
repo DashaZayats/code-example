@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use frontend\components\LeftMenuWidget;
 use frontend\components\ProjectStageWidget;
 use frontend\components\RelatedJobsWidget;
+use frontend\components\TopFreelancersWidget;
 use app\models\Responses;
 
 /* @var $this yii\web\View */
@@ -125,3 +126,6 @@ $this->registerMetaTag(['itemprop' => 'description', 'name' => 'description', 'c
         </div>
     </div>
 <?php endif;?>
+<div class="clearfix"></div>
+<?= TopFreelancersWidget::widget(['slug' => $category->url, 'currentJobId' => $model->id]); ?>
+<div class="clearfix"></div>

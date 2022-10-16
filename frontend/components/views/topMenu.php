@@ -3,11 +3,10 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
 <?php if(!empty($menu)):?>
-<ul class="dropdown-menu megamenu-content animated" role="menu">
-    <li>
+<ul class="dropdown-menu megamenu-content" role="menu"  aria-labelledby="navbarDropdownMenuLink">
         <div class="row">
             <div class="col-menu col-md-4">
-                <div class="content">
+                <div class="content dropdown-item">
                     <ul class="menu-col">
                        <?php for ($i = 1; $i <= 5; $i++):?>
                         <li>
