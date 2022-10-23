@@ -9,12 +9,15 @@ $params = array_merge(
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
+    'name' => 'Freetask.online',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
+    'language' => 'ru',
     'modules' => [],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
+            'baseUrl' => '',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -37,14 +40,18 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'enableStrictParsing' => false,
             'rules' => [
+                '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
+                '<controller>/<id:\d+>' => '<controller>/view',
+                '<controller>' => '<controller>/index',
             ],
         ],
-        */
     ],
     'params' => $params,
+    'timeZone' => 'Europe/Minsk',
 ];

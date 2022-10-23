@@ -29,7 +29,7 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
 
-
+    const ROLE_ADMIN = 1;
     /**
      * {@inheritdoc}
      */
@@ -56,6 +56,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            ['id', 'in', 'range' => [self::ROLE_ADMIN]],
         ];
     }
 
@@ -210,4 +211,14 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+    
+    public static function isUserAdmin($email)
+   {
+       if (static::findOne(['email' => $email, 'id' => self::ROLE_ADMIN]))
+       {
+           return true;
+       } else {
+           return false;
+       }
+   }
 }
