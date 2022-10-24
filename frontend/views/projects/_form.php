@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use mihaildev\ckeditor\CKEditor;
 use yii\widgets\ActiveForm;
 use app\models\Jobs;
 use \frontend\models\SignupForm;
@@ -18,7 +19,14 @@ use \frontend\models\SignupForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true,'placeholder' => 'Что нужно сделать'])->label('Название проекта'); ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6,'placeholder' => 'Подробно опишите вашу задачу'])->label('Описание'); ?>
+
+    <?= $form->field($model, 'description')->widget(CKEditor::className(),[
+        'editorOptions' => [
+            'preset' => 'basic', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+            'inline' => false, //по умолчанию false
+        ],
+    ])->textarea(['rows' => 6,'placeholder' => 'Подробно опишите вашу задачу'])->label('Описание (Подробно опишите вашу задачу)'); ?>
+  
     
     <?= $form->field($model, 'price')->textInput(['maxlength' => true,'placeholder' => 'Сумма в USD'])->label('Бюджет, $'); ?>
     

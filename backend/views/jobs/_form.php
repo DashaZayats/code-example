@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use mihaildev\ckeditor\CKEditor;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -18,8 +19,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
+    <?= $form->field($model, 'description')->widget(CKEditor::className(),[
+        'editorOptions' => [
+            'preset' => 'standard', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+            'inline' => false, //по умолчанию false
+        ],
+    ])->textarea(['rows' => 6,'placeholder' => 'Подробно опишите вашу задачу'])->label('Описание (Подробно опишите вашу задачу)'); ?>
+  
     <?= $form->field($model, 'meta_title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'meta_description')->textarea(['rows' => 6]) ?>

@@ -15,7 +15,7 @@ class AppAsset extends AssetBundle
        'css/plugins.css',
         'css/style.css',
         'css/green-style.css',
-        'css/site.css',
+     //   'css/site.css',
     ];
     public $js = [
        // 'js/jquery.js',
@@ -23,8 +23,8 @@ class AppAsset extends AssetBundle
      //   'js/bootstrap.js',
      //   'js/bootsnav.js',
      //   'js/select2.js',
-     // /  'js/wysihtml5-0.js',
-      //  'js/bootstrap-wysihtml5.js',
+     //  'js/wysihtml5-0.js',
+     //  'js/bootstrap-wysihtml5.js',
     //    'js/datedropper.js',
       //  'js/dropzone.js',
       //  'js/loader.js',

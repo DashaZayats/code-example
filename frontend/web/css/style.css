@@ -4407,6 +4407,14 @@ button.add-field{
 .icon-list{
 	background-position:-360px -48px
 }
+.wysihtml5-toolbar .icon-picture{
+    background-position: -456px -48px
+}
+.wysihtml5-toolbar .icon-picture::before {
+  content: "";
+}
+
+
 .form-control.textarea{
 	height:180px;
 	border-radius:4px
@@ -10837,3 +10845,6 @@ img.logo.logo-scrolled {
     color:#ff9b20;
 }
 /* rating end */
+.see-all-menu-link{
+    margin-top:150px !important;
+}
