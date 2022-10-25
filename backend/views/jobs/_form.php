@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->widget(CKEditor::className(),[
         'editorOptions' => [
-            'preset' => 'standard', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+            'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
             'inline' => false, //по умолчанию false
         ],
     ])->textarea(['rows' => 6,'placeholder' => 'Подробно опишите вашу задачу'])->label('Описание (Подробно опишите вашу задачу)'); ?>

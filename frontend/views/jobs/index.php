@@ -134,7 +134,7 @@ if(!empty($category)){
                             </div>
                         <?php endif;?>
                             
-                        <div class="row mrg-0 newjob-list-layout">
+                        <div class="row text-body">
                             <?php echo $category['description']?>
                         </div>
                     </div>
