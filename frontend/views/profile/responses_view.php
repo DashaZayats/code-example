@@ -175,23 +175,60 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <div class="">
                                                 <div class="col-md-9">
                                                     <p><?php echo $response['response']?></p>
-                                                    <span class="date time_ago" data-timestamp="<?php echo strtotime($response['create_date']);?>"><?php echo $response['create_date'];?></span>
                                                 </div>
                                                 <div class="reply col-md-3 right_block">
                                                     <div class="price_block">
                                                         <div class="service-response__price service-response__price_primary ng-binding"><?php echo $response['price']?>$</div>
                                                     </div>
+                                                                                                        <br><span class="date time_ago" data-timestamp="<?php echo strtotime($response['create_date']);?>"><?php echo $response['create_date'];?></span>
                                                 </div>
                                             </div>
                                         <?php if(!empty($response['messages'])):?>
                                         
                                         <div class="messages-block col-md-12">
                                             <div>
-                                                <h4>Сообщения (<?php echo count($response['messages'])?>) <a href="#" style="display:inline-block;float:right;border-bottom: 1px dotted #272f46;font-size:14px;">Раскрыть сообщения</a></h4>
+                                                <h4>Сообщения (<?php echo count($response['messages'])?>) <a href="#" style="display:none;float:right;border-bottom: 1px dotted #272f46;font-size:14px;">Раскрыть сообщения</a></h4>
                                             </div>
+                                        <table class="messages-table">
+                                            <tr>
+                                                <th width="70px"></th>
+                                                <th></th>
+                                                <th width="70px"></th>
+                                            </tr>
                                          <?php foreach($response['messages'] as $message):?>   
-                                            <div class="one-message-left"><?=$message['message']?></div>
+                                            <tr>
+                                                <td class="text-right">
+                                                    <?php if($response['user_id'] == $message['from_user_id']):?>
+                                                    <div class="message-img">
+                                                        <?php if($response['imageFile']!=''):?>
+                                                            <img src="/img/<?php echo $response['imageFile']?>" title="<?php echo $response['user_name']." ".$response['user_email']?>" data-toggle="tooltip" data-placement="top">
+                                                        <?php else:?>
+                                                            <img src="/img/avatar.png" title="<?php echo $response['user_name']." ".$response['user_email']?>" data-toggle="tooltip" data-placement="top">
+                                                        <?php endif;?>
+                                                    </div>
+                                                    <?php endif;?>
+                                                </td>
+                                                <td>
+                                                    
+                                                    <div class="text-message <?php if($response['user_id'] == $message['from_user_id']):?> left-pos <?php else:?> right-pos <?php endif;?>">
+                                                        <?=$message['message']?></br>
+                                                        <span class="date time_ago" data-timestamp="<?php echo strtotime($message['create_date']);?>"><?php echo $message['create_date'];?></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <?php if($response['user_id'] != $message['from_user_id']):?>
+                                                    <div class="message-img">
+                                                        <?php if($message['imageFile']!=''):?>
+                                                            <img src="/img/<?php echo $message['imageFile']?>" title="<?php echo $message['user_name']." ".$message['user_email']?>" data-toggle="tooltip" data-placement="top">
+                                                        <?php else:?>
+                                                            <img src="/img/avatar.png" title="<?php echo $message['user_name']." ".$message['user_email']?>" data-toggle="tooltip" data-placement="top">
+                                                        <?php endif;?>
+                                                    </div>
+                                                    <?php endif;?>
+                                                </td>
+                                            </tr>
                                             <?php endforeach;?>
+                                            </table>
                                         </div>
                                         <?php endif;?>
                                     </li>

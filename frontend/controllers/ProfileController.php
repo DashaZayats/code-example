@@ -174,10 +174,21 @@ class ProfileController extends Controller
         }else{
             $responsesUserCount = Responses::find()->where(['user_id' => Yii::$app->user->identity->id ,'project_id'=>$id])->one();
         }
-        $responsesList = Responses::find()->select('responses.*,user.email as user_email, user.username as user_name, user.imageFile as imageFile')->leftJoin('user', 'responses.user_id = user.id')->where(['responses.project_id'=>$id])->asArray()->all();
+        $responsesList = Responses::find()
+                ->select('responses.*,user.email as user_email, user.username as user_name, user.imageFile as imageFile')
+                ->leftJoin('user', 'responses.user_id = user.id')
+                ->where(['responses.project_id'=>$id])
+                ->asArray()
+                ->all();
         
         foreach($responsesList as $key=>$response){
-            $responsesList[$key]['messages'] = Messages::find()->select('*')->where(['response_id'=>$response['id']])->orderBy(['create_date' => SORT_DESC])->asArray()->all();
+            $responsesList[$key]['messages'] = Messages::find()
+                    ->select('messages.*,user.email as user_email, user.username as user_name, user.imageFile as imageFile')
+                    ->leftJoin('user', 'messages.from_user_id = user.id')
+                    ->where(['messages.response_id'=>$response['id']])
+                    ->orderBy(['messages.create_date' => SORT_ASC])
+                    ->asArray()
+                    ->all();
         }
         if($model['worker_id']!=Yii::$app->user->identity->id){
             return $this->redirect(['/']);

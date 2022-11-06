@@ -2,7 +2,7 @@
 
 namespace app\models;
 use yii\data\Pagination;
-
+use Stem\LinguaStemRu;
 use Yii;
 
 /**
@@ -158,7 +158,17 @@ class Projects extends \yii\db\ActiveRecord
             return [null, null];
         }
 
-        $words = explode(' ', $search);
+        $temp = explode(' ', $search);
+        $words = [];
+        $stemmer = new LinguaStemRu();
+        foreach ($temp as $item) {
+            if (iconv_strlen($item) > 3) {
+                // получаем корень слова
+                $words[] = $stemmer->stem_word($item);
+            } else {
+                $words[] = $item;
+            }
+        }
 
         $query = self::find()->select('projects.*,jobs.title as cattitle,jobs.url as category_url')
             ->leftJoin('jobs', 'projects.category_id = jobs.id');
