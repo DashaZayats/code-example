@@ -42,8 +42,8 @@ return [
         'reCaptcha' => [
            'name' => 'reCaptcha',
            'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
-           'siteKey' => '6LdCaSEiAAAAAEII30vDo9Uo-lMxoheTwr6qhz4Z',
-           'secret' => '6LdCaSEiAAAAAOBnTYdhuUyKPAxfmP5zBBxWe-Lh',
+           'siteKey' => '',
+           'secret' => '',
            ],
 
         'urlManager' => [
@@ -77,6 +77,42 @@ return [
                     'messages/create' => 'messages/create',
                     'messages/createresponses' => 'messages/createresponses',
                     'sitemap.xml' => 'site/sitemap',
+                
+                
+                    'parser' => 'parser/index',
+                    'parser/product' => 'parser/product',
+                    'parser/image' => 'parser/image',
+                    'parser/updateimage' => 'parser/updateimage',
+                    'parser/moto' => 'parser/moto',
+                    'parser/motoproduct' => 'parser/motoproduct',
+                
+                    'parser-garnityra' => 'parser-garnityra/index',
+                    'parser-garnityra/product' => 'parser-garnityra/product',
+                    'parser-garnityra/option' => 'parser-garnityra/option',
+                    'parser-garnityra/image' => 'parser-garnityra/image',
+                
+                    'parser-kurtki' => 'parser-kurtki/index',
+                    'parser-kurtki/product' => 'parser-kurtki/product',
+                    'parser-kurtki/option' => 'parser-kurtki/option',
+                    'parser-kurtki/image' => 'parser-kurtki/image',
+                    'parser-kurtki/seoproduct' => 'parser-kurtki/seoproduct',
+                    'parser-kurtki/maincategory' => 'parser-kurtki/maincategory',
+                    'parser-kurtki/setimages' => 'parser-kurtki/setimages',
+                
+                
+                    'parser-schem' => 'parser-schem/index',
+                    'parser-schem/product' => 'parser-schem/product',
+                    'parser-schem/option' => 'parser-schem/option',
+                    'parser-schem/image' => 'parser-schem/image',
+                    'parser-schem/seoproduct' => 'parser-schem/seoproduct',
+                    'parser-schem/maincategory' => 'parser-schem/maincategory',
+                    'parser-schem/setimages' => 'parser-schem/setimages',
+                    'parser-schem/seo' => 'parser-schem/seo',
+                    'parser-schem/brend' => 'parser-schem/brend',
+                    'parser-schem/brend-image' => 'parser-schem/brend-image',
+                
+                    'avito' => 'avito/index',
+                
                     'controller/action/' => 'controller/action',
                     '<url:.+>/' => 'site/redirect',
                 ),
